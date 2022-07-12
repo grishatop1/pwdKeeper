@@ -49,5 +49,9 @@ if __name__ == "__main__":
     window.show()
 
     c = Controller(window)
+    
+    from gui.serviceDialog import ServiceDialog
+    s = ServiceDialog()
+    s.exec()
 
     sys.exit(app.exec())

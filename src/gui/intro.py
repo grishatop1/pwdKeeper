@@ -27,7 +27,7 @@ class IntroPage(QWidget):
         self.main.addSpacing(10)
 
         self.create_btn = QPushButton(text="Create a new safe")
-        self.create_btn.setStyleSheet("font-size: 25px; padding: 15px;")
+        self.create_btn.setStyleSheet("font-size: 21px; padding: 15px; font-weight: bold;")
         self.main.addWidget(self.create_btn)
 
         self.load_btn = QPushButton(text="Load safe")

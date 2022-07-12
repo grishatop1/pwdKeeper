@@ -41,24 +41,34 @@ class MainLayout(QHBoxLayout):
         
         self.scroll.setWidgetResizable(True)
         self.list.setContentsMargins(15,15,15,15)
+        self.list.setSpacing(10)
         
         #debug
-        self.tab1 = TabWidget()
-        self.list.addWidget(self.tab1)
-        
-        self.tab2 = TabWidget()
-        self.list.addWidget(self.tab2)
-        
-        self.tab3 = TabWidget()
-        self.list.addWidget(self.tab3)
-        
-        self.list.addStretch()
+        """self.tabs = []
+        for i in range(15):
+            tab = TabWidget()
+            self.tabs.append(tab)
+            
+        for tab in self.tabs:
+            self.list.addWidget(tab)
+            
+            self.list.addStretch()"""
+        self.setEmptyLabel()
         
         #adding to qwidget the layout
         self.w.setLayout(self.list)
         
         self.scroll.setWidget(self.w)
         self.addWidget(self.scroll)
+        
+    def setEmptyLabel(self):
+        self.label = QLabel("Such an empty place here :3")
+        self.label.setStyleSheet("color: #525252; font-size: 20px; font-weight: bold;")
+        self.label.setAlignment(Qt.AlignCenter)
+        self.list.addWidget(self.label)
+        
+    def removeEmptyLabel(self):
+        self.label.hide()
         
 class TabWidget(QFrame):
     def __init__(self):
@@ -91,7 +101,6 @@ class TabWidget(QFrame):
         self.main.addLayout(self.options_layout)
         
         self.setLayout(self.main)
-    
 
 class SearchLayout(QHBoxLayout):
     def __init__(self):
