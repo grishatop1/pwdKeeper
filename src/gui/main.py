@@ -44,7 +44,7 @@ class MainLayout(QHBoxLayout):
         self.list.setSpacing(10)
         
         #debug
-        """self.tabs = []
+        self.tabs = []
         for i in range(15):
             tab = TabWidget()
             self.tabs.append(tab)
@@ -52,7 +52,7 @@ class MainLayout(QHBoxLayout):
         for tab in self.tabs:
             self.list.addWidget(tab)
             
-            self.list.addStretch()"""
+            self.list.addStretch()
         self.setEmptyLabel()
         
         #adding to qwidget the layout
@@ -77,15 +77,14 @@ class TabWidget(QFrame):
         self.setMaximumHeight(100)
         
         self.main = QHBoxLayout()
+
+        self.service_label = QLabel("GitHub")
+        self.service_label.setStyleSheet("font-weight: bold; font-size: 17px;")
+        self.main.addWidget(self.service_label)
         
-        self.img = QFrame()
-        self.img.setFixedSize(64,64)
-        self.img.setStyleSheet("border: 1px solid lightgray; border-radius: 6px;")
-        self.main.addWidget(self.img)
+        self.main.addSpacing(25)
         
         self.vbox = QVBoxLayout()
-        self.service_label = QLabel("GitHub")
-        self.vbox.addWidget(self.service_label)
         self.username_label = QLabel("Username: grishatop1")
         self.vbox.addWidget(self.username_label)
         self.password_label = QLabel("Password: horsecookie123")
