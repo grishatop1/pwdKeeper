@@ -40,10 +40,17 @@ class MainLayout(QHBoxLayout):
         self.list = QVBoxLayout()
         
         self.scroll.setWidgetResizable(True)
+        self.list.setContentsMargins(15,15,15,15)
         
         #debug
         self.tab1 = TabWidget()
         self.list.addWidget(self.tab1)
+        
+        self.tab2 = TabWidget()
+        self.list.addWidget(self.tab2)
+        
+        self.tab3 = TabWidget()
+        self.list.addWidget(self.tab3)
         
         self.list.addStretch()
         
@@ -73,13 +80,13 @@ class TabWidget(QFrame):
         self.vbox.addWidget(self.username_label)
         self.password_label = QLabel("Password: horsecookie123")
         self.vbox.addWidget(self.password_label)
-        self.main.addLayout(self.vbox)
+        self.main.addLayout(self.vbox, 2)
         
         self.options_layout = QVBoxLayout()
         self.edit_btn = QPushButton(text="Edit")
         self.options_layout.addWidget(self.edit_btn)
         self.remove_btn = QPushButton(text="Remove")
-        self.remove_btn.setStyleSheet("color: lightred;")
+        self.remove_btn.setStyleSheet("color: red;")
         self.options_layout.addWidget(self.remove_btn)
         self.main.addLayout(self.options_layout)
         
@@ -121,5 +128,4 @@ class ToolbarLayout(QHBoxLayout):
         self.addStretch()
 
         self.logout_btn = QPushButton(text="Exit the safe")
-        self.logout_btn.setStyleSheet("color: red;")
         self.addWidget(self.logout_btn)
