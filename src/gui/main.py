@@ -11,6 +11,8 @@ from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtWidgets import QLabel
 from PyQt5.QtWidgets import QLineEdit
 
+from PyQt5.QtWidgets import QGraphicsDropShadowEffect
+
 class MainPage(QWidget):
     def __init__(self):
         super().__init__()
@@ -37,24 +39,49 @@ class MainLayout(QHBoxLayout):
         self.w = QWidget()
         self.list = QVBoxLayout()
         
-        #debug
-        self.tab1 = TabWidget()
-        
         self.scroll.setWidgetResizable(True)
         
+        #debug
+        self.tab1 = TabWidget()
+        self.list.addWidget(self.tab1)
+        
+        self.list.addStretch()
+        
+        #adding to qwidget the layout
+        self.w.setLayout(self.list)
+        
+        self.scroll.setWidget(self.w)
         self.addWidget(self.scroll)
         
 class TabWidget(QFrame):
     def __init__(self):
         super().__init__()
         
+        self.setMaximumHeight(100)
+        
         self.main = QHBoxLayout()
         
         self.img = QFrame()
-        self.img.resize(64,64)
+        self.img.setFixedSize(64,64)
         self.img.setStyleSheet("border: 1px solid lightgray; border-radius: 6px;")
-        
         self.main.addWidget(self.img)
+        
+        self.vbox = QVBoxLayout()
+        self.service_label = QLabel("GitHub")
+        self.vbox.addWidget(self.service_label)
+        self.username_label = QLabel("Username: grishatop1")
+        self.vbox.addWidget(self.username_label)
+        self.password_label = QLabel("Password: horsecookie123")
+        self.vbox.addWidget(self.password_label)
+        self.main.addLayout(self.vbox)
+        
+        self.options_layout = QVBoxLayout()
+        self.edit_btn = QPushButton(text="Edit")
+        self.options_layout.addWidget(self.edit_btn)
+        self.remove_btn = QPushButton(text="Remove")
+        self.remove_btn.setStyleSheet("color: lightred;")
+        self.options_layout.addWidget(self.remove_btn)
+        self.main.addLayout(self.options_layout)
         
         self.setLayout(self.main)
     
