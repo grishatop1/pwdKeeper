@@ -42,17 +42,7 @@ class MainLayout(QHBoxLayout):
         self.scroll.setWidgetResizable(True)
         self.list.setContentsMargins(15,15,15,15)
         self.list.setSpacing(10)
-        
-        #debug
-        self.tabs = []
-        for i in range(15):
-            tab = TabWidget()
-            self.tabs.append(tab)
             
-        for tab in self.tabs:
-            self.list.addWidget(tab)
-            
-            self.list.addStretch()
         self.setEmptyLabel()
         
         #adding to qwidget the layout

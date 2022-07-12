@@ -16,6 +16,10 @@ class IntroPage(QWidget):
 
         self.wrapper.addStretch()
         self.main.addStretch()
+        
+        self.label = QLabel(text="pwdKeeper")
+        self.label.setStyleSheet("font-size: 50px; font-weight: bold;")
+        self.main.addWidget(self.label)
 
         self.img_label = QLabel()
         self.pixmap = QPixmap("../assets/safe-icon.png").scaledToWidth(100, Qt.SmoothTransformation)
@@ -24,14 +28,21 @@ class IntroPage(QWidget):
         self.img_label.setStyleSheet("border-radius: 20px;")
         self.main.addWidget(self.img_label)
 
-        self.main.addSpacing(10)
+        self.main.addSpacing(50)
+        
+        self.btns = QVBoxLayout()
+        self.btns.setAlignment(Qt.AlignCenter)
 
         self.create_btn = QPushButton(text="Create a new safe")
-        self.create_btn.setStyleSheet("font-size: 21px; padding: 15px; font-weight: bold;")
-        self.main.addWidget(self.create_btn)
+        self.create_btn.setStyleSheet("font-size: 21px; padding: 15px;")
+        self.create_btn.setMaximumWidth(250)
+        self.btns.addWidget(self.create_btn)
 
         self.load_btn = QPushButton(text="Load safe")
-        self.main.addWidget(self.load_btn)
+        self.load_btn.setMaximumWidth(250)
+        self.btns.addWidget(self.load_btn)
+        
+        self.main.addLayout(self.btns)
 
         self.main.addStretch()
 
