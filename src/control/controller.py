@@ -10,3 +10,5 @@ class Controller:
         
         self.intro = IntroCtrl(self)
         self.create = CreatePageCtrl(self)
+        
+        self.ui.closeEvent = self.safe.close

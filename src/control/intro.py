@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QFileDialog
+from os.path import expanduser
 
 class IntroCtrl:
     def __init__(self, ctrl):
@@ -6,16 +7,17 @@ class IntroCtrl:
         self.connectWidgets()
         
     def connectWidgets(self):
-        self.ctrl.ui.intro_page.create_btn.clicked.connect(self.filePick)
+        self.ctrl.ui.intro_page.create_btn.clicked.connect(self.createSafePick)
         
-    def filePick(self):
+    def createSafePick(self):
         dialog = QFileDialog()
         dialog.setDefaultSuffix(".pwdKeeper")
         path, _ = dialog.getSaveFileName(
             caption="Store database file",
-            directory="myPasswords.pwdKeeper",
+            directory=f"{expanduser('~')}/myPasswords.pwdKeeper",
             filter="pwdKeeper file (*.pwdKeeper)"
         )
         
         if path:
-            self.ctrl.safe.create(path)
+            self.ctrl.safe.setPath(path)
+            self.ctrl.ui.stacked.setCurrentIndex(1)

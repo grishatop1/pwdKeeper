@@ -2,6 +2,8 @@ class CreatePageCtrl:
     def __init__(self, ctrl):
         self.ctrl = ctrl
         self.connectWidgets()
+        
+        self.pwd = None
     
     def connectWidgets(self):
         self.ctrl.ui.create_page.pwd_entry.textChanged.connect(self.validate)
@@ -19,12 +21,14 @@ class CreatePageCtrl:
             self.setDisabled()
             return
         
+        self.pwd = pwd1
         self.setEnabled()
         return True
     
     def proceed(self):
         if not self.validate(): return #na svaki slucaj
-        
+        self.ctrl.safe.create(self.pwd)
+        self.ctrl.ui.stacked.setCurrentIndex(3)
         
     def setEnabled(self):
         self.ctrl.ui.create_page.enter_btn.setDisabled(False)
