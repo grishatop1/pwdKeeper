@@ -36,7 +36,7 @@ class Window(QWidget):
         self.main_page = MainPage()
         self.stacked.addWidget(self.main_page)
 
-        self.stacked.setCurrentIndex(0)
+        self.stacked.setCurrentIndex(1)
     
         self.setLayout(self.stacked)
 

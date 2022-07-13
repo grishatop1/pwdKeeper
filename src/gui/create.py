@@ -30,12 +30,14 @@ class CreatePasswordPage(QWidget):
         self.pwd_label = QLabel(text="Enter a password:")
         self.pwd_entry = QLineEdit()
         self.pwd_entry.setMaximumWidth(250)
+        self.pwd_entry.setEchoMode(QLineEdit.Password)
         self.form.addRow(self.pwd_label, self.pwd_entry)
 
-        self.pwd_label = QLabel(text="Repeat the password:")
-        self.pwd_entry = QLineEdit()
-        self.pwd_entry.setMaximumWidth(250)
-        self.form.addRow(self.pwd_label, self.pwd_entry)
+        self.pwd2_label = QLabel(text="Repeat the password:")
+        self.pwd2_entry = QLineEdit()
+        self.pwd2_entry.setMaximumWidth(250)
+        self.pwd2_entry.setEchoMode(QLineEdit.Password)
+        self.form.addRow(self.pwd2_label, self.pwd2_entry)
 
         self.form.setFormAlignment(Qt.AlignCenter)
         self.main.addLayout(self.form)
@@ -44,6 +46,7 @@ class CreatePasswordPage(QWidget):
 
         self.enter_btn = QPushButton(text="Enter!")
         self.enter_btn.setMinimumWidth(250)
+        self.enter_btn.setDisabled(True)
         self.main.addWidget(self.enter_btn, alignment=Qt.AlignCenter)
 
         self.main.addStretch()
