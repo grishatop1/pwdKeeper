@@ -2,5 +2,5 @@ class SafeControl:
     def __init__(self, ctrl):
         self.ctrl = ctrl
         
-    def create(self):
-        pass
+    def create(self, path):
+        print(path)
