@@ -1,3 +1,5 @@
+from PyQt5.QtCore import QTimer
+
 class CreatePageCtrl:
     def __init__(self, ctrl):
         self.ctrl = ctrl
@@ -27,8 +29,12 @@ class CreatePageCtrl:
     
     def proceed(self):
         if not self.validate(): return #na svaki slucaj
+        
+        self.ctrl.ui.create_page.enter_btn.setText("Loading...")
+        self.setDisabled()
         self.ctrl.safe.create(self.pwd)
         self.ctrl.ui.stacked.setCurrentIndex(3)
+        #move safe create to another thread....
         
     def setEnabled(self):
         self.ctrl.ui.create_page.enter_btn.setDisabled(False)

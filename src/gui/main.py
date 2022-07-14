@@ -119,7 +119,7 @@ class ToolbarLayout(QHBoxLayout):
         self.lock_pixmap = QPixmap("../assets/lock.png").scaledToWidth(32, Qt.SmoothTransformation)
         self.lock_label.setPixmap(self.lock_pixmap)
         self.logo.addWidget(self.lock_label)
-        self.aes_text = QLabel(text="Fernet Encryption in use")
+        self.aes_text = QLabel(text="AES 128bit encryption")
         self.logo.addWidget(self.aes_text)
         self.addLayout(self.logo)
 

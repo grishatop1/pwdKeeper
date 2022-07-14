@@ -19,6 +19,31 @@ class SafeControl:
     def create(self, pwd):
         self.f = open(self.path, "wb+")
         
+        password = pwd.encode("utf-8")
+        salt = os.urandom(16)
+        kdf = PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=salt,
+            iterations=500000,
+            backend=default_backend()
+        )
+        kdf_hash = PBKDF2HMAC(
+            algorithm=hashes.SHA256(),
+            length=32,
+            salt=salt,
+            iterations=500000,
+            backend=default_backend()
+        )
+        key = base64.urlsafe_b64encode(kdf.derive(password))
+        _hash = kdf_hash.derive(key)
+
+        self.fnet = Fernet(key)
+        self.f.write(salt)
+        self.f.write(_hash)
+        
+        #salt16 + hash32 = first 48 bytes for auth
+        
     def close(self, *args):
         if self.f:
             self.f.close()
