@@ -25,11 +25,12 @@ class LoginPage(QWidget):
         self.label.setStyleSheet("font-size: 40px;")
         self.main.addWidget(self.label)
 
-        self.main.addSpacing(30)
+        self.main.addSpacing(50)
 
         self.pwd_label = QLabel(text="Enter the password:")
         self.pwd_entry = QLineEdit()
         self.pwd_entry.setMaximumWidth(250)
+        self.pwd_entry.setEchoMode(QLineEdit.Password)
         self.form.addRow(self.pwd_label, self.pwd_entry)
 
         self.form.setFormAlignment(Qt.AlignCenter)

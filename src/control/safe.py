@@ -48,6 +48,10 @@ class SafeControl:
         self.save()
         #salt16 + hash32 = first 48 bytes for auth
         
+    def load(self, pwd):
+        self.f = open(self.path, "wb+")
+        password = pwd.encode("utf-8")
+        
     def close(self, *args):
         if self.f:
             self.f.close()

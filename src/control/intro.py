@@ -14,7 +14,7 @@ class IntroCtrl:
         dialog = QFileDialog()
         dialog.setDefaultSuffix(".pwdKeeper")
         path, _ = dialog.getSaveFileName(
-            caption="Store database file",
+            caption="Store pwdKeeper file",
             directory=f"{expanduser('~')}/myPasswords.pwdKeeper",
             filter="pwdKeeper file (*.pwdKeeper)"
         )
@@ -24,4 +24,12 @@ class IntroCtrl:
             self.ctrl.ui.stacked.setCurrentIndex(1)
             
     def loadSafePick(self):
-        pass
+        dialog = QFileDialog()
+        path, _ = dialog.getOpenFileName(
+            caption="Select pwdKeeper file",
+            filter="pwdKeeper file (*.pwdKeeper)",
+            directory=f"{expanduser('~')}/"
+        )
+        if path:
+            self.ctrl.safe.setPath(path)
+            self.ctrl.ui.stacked.setCurrentIndex(2)

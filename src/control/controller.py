@@ -1,5 +1,6 @@
 from control.create import CreatePageCtrl
 from control.intro import IntroCtrl
+from control.login import LoginCtrl
 from control.main import MainControl
 from control.safe import SafeControl
 
@@ -11,6 +12,7 @@ class Controller:
         
         self.intro = IntroCtrl(self)
         self.create = CreatePageCtrl(self)
+        self.login = LoginCtrl(self)
         self.main = MainControl(self)
         
         self.ui.closeEvent = self.safe.close
