@@ -101,5 +101,5 @@ class SafeControl:
         self.path: str = None
         self.f = None
         self.fnet: Fernet = None
-        self.data = []
+        self.data = {}
         self.prepend = None
