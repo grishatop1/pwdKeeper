@@ -33,6 +33,7 @@ class CreatePageCtrl:
         self.ctrl.ui.create_page.enter_btn.setText("Loading...")
         self.setDisabled()
         self.ctrl.safe.create(self.pwd)
+        self.ctrl.main.loadEverything()
         self.ctrl.ui.stacked.setCurrentIndex(3)
         #move safe create to another thread....
         

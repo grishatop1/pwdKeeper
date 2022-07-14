@@ -24,16 +24,34 @@ class MainControl:
             return
         
         self.ctrl.safe.addAccount(service, username, password)
+        tab_ui = self.createTabWidget(service, username, password)
+        self.appendTabWidget(tab_ui)
         self.addDialog.close()
         
     def loadEverything(self):
         data = self.ctrl.safe.data
-        if data:
-            self.ctrl.ui.main_page.main.removeEmptyLabel()
+        
+        if not data:
+            self.ctrl.ui.main_page.main.setEmptyLabel()
+            return
+        
         for tab in data:
-            tab_ui = TabWidget()
-            tab_ui.service_label.setText(tab['service'])
-            tab_ui.username_label.setText(f"Username: <b>{tab['username']}</b>")
-            tab_ui.password_label.setText(f"Password: <b>{tab['password']}</b>")
-            self.ctrl.ui.main_page.main.list.addWidget(tab_ui)
+            tab_ui = self.createTabWidget(
+                tab["service"], tab["username"], tab["password"]
+            )
+            self.appendTabWidget(tab_ui)
             
+       
+            
+    def createTabWidget(self, service, username, password):
+        tab_ui = TabWidget()
+        tab_ui.service_label.setText(service)
+        tab_ui.username_label.setText(f"Username: <b>{username}</b>")
+        tab_ui.password_label.setText(f"Password: <b>{password}</b>")
+        return tab_ui
+    
+    def appendTabWidget(self, tab_ui: TabWidget):
+        self.ctrl.ui.main_page.main.list.insertWidget(
+            self.ctrl.ui.main_page.main.list.count()-1, tab_ui
+        )
+        self.ctrl.ui.main_page.main.removeEmptyLabel()

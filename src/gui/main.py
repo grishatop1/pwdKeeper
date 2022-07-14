@@ -42,8 +42,8 @@ class MainLayout(QHBoxLayout):
         self.scroll.setWidgetResizable(True)
         self.list.setContentsMargins(15,15,15,15)
         self.list.setSpacing(10)
-            
-        self.setEmptyLabel()
+        
+        self.label_hidden = True
         
         #adding to qwidget the layout
         self.w.setLayout(self.list)
@@ -56,9 +56,13 @@ class MainLayout(QHBoxLayout):
         self.label.setStyleSheet("color: #525252; font-size: 20px; font-weight: bold;")
         self.label.setAlignment(Qt.AlignCenter)
         self.list.addWidget(self.label)
+        self.label_hidden = False
         
     def removeEmptyLabel(self):
-        self.label.hide()
+        if not self.label_hidden:
+            self.label.deleteLater()
+            self.list.addStretch()
+            self.label_hidden = True
         
 class TabWidget(QFrame):
     def __init__(self):
@@ -75,10 +79,12 @@ class TabWidget(QFrame):
         self.main.addSpacing(25)
         
         self.vbox = QVBoxLayout()
+        self.vbox.addStretch()
         self.username_label = QLabel("Username: grishatop1")
         self.vbox.addWidget(self.username_label)
         self.password_label = QLabel("Password: horsecookie123")
         self.vbox.addWidget(self.password_label)
+        self.vbox.addStretch()
         self.main.addLayout(self.vbox, 2)
         
         self.options_layout = QVBoxLayout()
