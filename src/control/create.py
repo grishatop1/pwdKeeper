@@ -42,3 +42,9 @@ class CreatePageCtrl:
         
     def setDisabled(self):
         self.ctrl.ui.create_page.enter_btn.setDisabled(True)
+        
+    def resetForm(self):
+        self.ctrl.ui.create_page.enter_btn.setText("Enter!")
+        self.setEnabled()
+        self.ctrl.ui.create_page.pwd_entry.setText("")
+        self.ctrl.ui.create_page.pwd2_entry.setText("")

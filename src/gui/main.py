@@ -42,6 +42,7 @@ class MainLayout(QHBoxLayout):
         self.scroll.setWidgetResizable(True)
         self.list.setContentsMargins(15,15,15,15)
         self.list.setSpacing(10)
+        self.list.addStretch()
         
         self.label_hidden = True
         
@@ -61,7 +62,6 @@ class MainLayout(QHBoxLayout):
     def removeEmptyLabel(self):
         if not self.label_hidden:
             self.label.deleteLater()
-            self.list.addStretch()
             self.label_hidden = True
         
 class TabWidget(QFrame):

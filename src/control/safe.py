@@ -88,3 +88,11 @@ class SafeControl:
         }
         self.data.append(acc)
         self.save()
+        
+    def reset(self):
+        self.close()
+        self.path: str = None
+        self.f = None
+        self.fnet: Fernet = None
+        self.data = []
+        self.prepend = None

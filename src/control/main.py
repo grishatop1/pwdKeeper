@@ -7,9 +7,15 @@ class MainControl:
         self.connectWidgets()
         
         self.addDialog: ServiceDialog = None
+        self.tabs = []
     
     def connectWidgets(self):
         self.ctrl.ui.main_page.search.add_btn.clicked.connect(self.openAddAccountDialog)
+        self.ctrl.ui.main_page.toolbar.logout_btn.clicked.connect(self.backToTheLobby)
+        
+    def backToTheLobby(self):
+        self.ctrl.ui.stacked.setCurrentIndex(0)
+        self.ctrl.reset()
     
     def openAddAccountDialog(self):
         self.addDialog = ServiceDialog()
@@ -55,3 +61,8 @@ class MainControl:
             self.ctrl.ui.main_page.main.list.count()-1, tab_ui
         )
         self.ctrl.ui.main_page.main.removeEmptyLabel()
+        self.tabs.append(tab_ui)
+        
+    def clearTabs(self):
+        for tab in self.tabs:
+            tab.deleteLater()

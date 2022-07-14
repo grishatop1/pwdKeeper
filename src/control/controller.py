@@ -16,3 +16,9 @@ class Controller:
         self.main = MainControl(self)
         
         self.ui.closeEvent = self.safe.close
+        
+    def reset(self):
+        self.login.resetForm()
+        self.create.resetForm()
+        self.safe.reset()
+        self.main.clearTabs()

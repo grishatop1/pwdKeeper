@@ -24,3 +24,7 @@ class LoginCtrl:
         
     def hideError(self):
         self.ctrl.ui.login_page.error_label.hide()
+        
+    def resetForm(self):
+        self.hideError()
+        self.ctrl.ui.login_page.pwd_entry.setText("")
