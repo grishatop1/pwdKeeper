@@ -91,6 +91,15 @@ class SafeControl:
         self.data[_id] = acc
         self.save()
         return _id
+    
+    def editAccount(self, _id, service, username, password):
+        acc = {
+            "service": service,
+            "username": username,
+            "password": password
+        }
+        self.data[_id] = acc
+        self.save()
         
     def removeAccount(self, _id):
         del self.data[_id]

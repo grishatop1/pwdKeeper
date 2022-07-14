@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QMessageBox
 
-from gui.serviceDialog import ServiceDialog
+from gui.serviceDialog import EditTab, ServiceDialog
 from gui.main import TabWidget
 
 class MainControl:
@@ -11,6 +11,7 @@ class MainControl:
         self.addDialog: ServiceDialog = None
         self.tabs = []
         self.tabToRemove = None
+        self.tabToEdit = None
     
     def connectWidgets(self):
         self.ctrl.ui.main_page.search.add_btn.clicked.connect(self.openAddAccountDialog)
@@ -38,6 +39,26 @@ class MainControl:
         self.appendTabWidget(tab_ui)
         self.addDialog.close()
         
+    def openEditAccountDialog(self, tab_ui):
+        tab = self.ctrl.safe.data[tab_ui._id]
+        self.tabToEdit = tab_ui
+        self.editDialog = EditTab(
+            tab["service"], tab["username"], tab["password"]
+        )
+        self.editDialog.change_btn.clicked.connect(self.editTab)
+        self.editDialog.exec()
+        
+    def editTab(self):
+        service = self.editDialog.combox.currentText()
+        username = self.editDialog.username_entry.text()
+        password = self.editDialog.password_entry.text()
+        self.ctrl.safe.editAccount(self.tabToEdit._id, service, username, password)
+        self.tabToEdit.service_label.setText(service)
+        self.tabToEdit.username_label.setText(f"Username: <b>{username}</b>")
+        self.tabToEdit.password_label.setText(f"Password: <b>{password}</b>")
+        self.tabToEdit = None
+        self.editDialog.close()
+        
     def loadEverything(self):
         data = self.ctrl.safe.data
         
@@ -55,6 +76,7 @@ class MainControl:
         tab_ui.username_label.setText(f"Username: <b>{username}</b>")
         tab_ui.password_label.setText(f"Password: <b>{password}</b>")
         tab_ui.remove_btn.clicked.connect(lambda: self.askToRemoveTab(tab_ui))
+        tab_ui.edit_btn.clicked.connect(lambda: self.openEditAccountDialog(tab_ui))
         return tab_ui
     
     def askToRemoveTab(self, tab_ui):
