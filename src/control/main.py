@@ -28,7 +28,6 @@ class MainControl:
         
     def loadEverything(self):
         data = self.ctrl.safe.data
-        print(data)
         if data:
             self.ctrl.ui.main_page.main.removeEmptyLabel()
         for tab in data:

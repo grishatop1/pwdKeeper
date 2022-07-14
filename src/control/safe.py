@@ -14,7 +14,7 @@ class SafeControl:
         self.f = None
         self.fnet: Fernet = None
         self.data = []
-        self.prepend = b""
+        self.prepend = None
         
     def setPath(self, path):
         self.path = path
@@ -76,7 +76,8 @@ class SafeControl:
     def save(self):
         data = pickle.dumps(self.data)
         ciphertext = self.fnet.encrypt(data)
-        self.f.write(self.prepend + ciphertext)
+        self.f.write(self.prepend)
+        self.f.write(ciphertext)
             
     def addAccount(self, service, username, password):
         acc = {
