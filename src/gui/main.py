@@ -42,9 +42,8 @@ class MainLayout(QHBoxLayout):
         self.scroll.setWidgetResizable(True)
         self.list.setContentsMargins(15,15,15,15)
         self.list.setSpacing(10)
-        self.list.addStretch()
         
-        self.label_hidden = True
+        self.list.addStretch()
         
         #adding to qwidget the layout
         self.w.setLayout(self.list)
@@ -56,13 +55,13 @@ class MainLayout(QHBoxLayout):
         self.label = QLabel("Such an empty place here :3")
         self.label.setStyleSheet("color: #525252; font-size: 20px; font-weight: bold;")
         self.label.setAlignment(Qt.AlignCenter)
-        self.list.addWidget(self.label)
-        self.label_hidden = False
+        self.list.insertWidget(0, self.label)
+        
         
     def removeEmptyLabel(self):
-        if not self.label_hidden:
-            self.label.deleteLater()
-            self.label_hidden = True
+        self.label.deleteLater()
+        self.label_hidden = True
+        self.list.addStretch()
         
 class TabWidget(QFrame):
     def __init__(self):

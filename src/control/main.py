@@ -37,10 +37,6 @@ class MainControl:
     def loadEverything(self):
         data = self.ctrl.safe.data
         
-        if not data:
-            self.ctrl.ui.main_page.main.setEmptyLabel()
-            return
-        
         for tab in data:
             tab_ui = self.createTabWidget(
                 tab["service"], tab["username"], tab["password"]
@@ -58,9 +54,8 @@ class MainControl:
     
     def appendTabWidget(self, tab_ui: TabWidget):
         self.ctrl.ui.main_page.main.list.insertWidget(
-            self.ctrl.ui.main_page.main.list.count()-1, tab_ui
+            self.ctrl.ui.main_page.main.list.count()-1,tab_ui
         )
-        self.ctrl.ui.main_page.main.removeEmptyLabel()
         self.tabs.append(tab_ui)
         
     def clearTabs(self):
