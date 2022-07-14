@@ -8,6 +8,7 @@ class IntroCtrl:
         
     def connectWidgets(self):
         self.ctrl.ui.intro_page.create_btn.clicked.connect(self.createSafePick)
+        self.ctrl.ui.intro_page.load_btn.clicked.connect(self.loadSafePick)
         
     def createSafePick(self):
         dialog = QFileDialog()
@@ -21,3 +22,6 @@ class IntroCtrl:
         if path:
             self.ctrl.safe.setPath(path)
             self.ctrl.ui.stacked.setCurrentIndex(1)
+            
+    def loadSafePick(self):
+        pass
