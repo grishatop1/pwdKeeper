@@ -61,3 +61,4 @@ class MainControl:
     def clearTabs(self):
         for tab in self.tabs:
             tab.deleteLater()
+        self.tabs = []
