@@ -1,3 +1,5 @@
+from PyQt5.QtWidgets import QMessageBox
+
 from gui.serviceDialog import ServiceDialog
 from gui.main import TabWidget
 
@@ -8,6 +10,7 @@ class MainControl:
         
         self.addDialog: ServiceDialog = None
         self.tabs = []
+        self.tabToRemove = None
     
     def connectWidgets(self):
         self.ctrl.ui.main_page.search.add_btn.clicked.connect(self.openAddAccountDialog)
@@ -29,20 +32,21 @@ class MainControl:
         if service == "" or username == "" or password == "":
             return
         
-        self.ctrl.safe.addAccount(service, username, password)
+        _id = self.ctrl.safe.addAccount(service, username, password)
         tab_ui = self.createTabWidget(service, username, password)
+        tab_ui.setId(_id)
         self.appendTabWidget(tab_ui)
         self.addDialog.close()
         
     def loadEverything(self):
         data = self.ctrl.safe.data
         
-        for tab in data:
+        for _id, tab in data.items():
             tab_ui = self.createTabWidget(
                 tab["service"], tab["username"], tab["password"]
             )
+            tab_ui.setId(_id)
             self.appendTabWidget(tab_ui)
-            
        
             
     def createTabWidget(self, service, username, password):
@@ -50,8 +54,27 @@ class MainControl:
         tab_ui.service_label.setText(service)
         tab_ui.username_label.setText(f"Username: <b>{username}</b>")
         tab_ui.password_label.setText(f"Password: <b>{password}</b>")
+        tab_ui.remove_btn.clicked.connect(lambda: self.askToRemoveTab(tab_ui))
         return tab_ui
     
+    def askToRemoveTab(self, tab_ui):
+        self.tabToRemove = tab_ui
+        dialog = QMessageBox()
+        dialog.setText("Do u really want to remove this account?")
+        dialog.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+        dialog.buttonClicked.connect(self.tabRemoovation)
+        dialog.exec()
+        
+    def tabRemoovation(self, i):
+        if i.text() == "&Yes":
+            self.removeTab()
+    
+    def removeTab(self):
+        self.tabs.remove(self.tabToRemove)
+        self.tabToRemove.deleteLater()
+        self.ctrl.safe.removeAccount(self.tabToRemove._id)
+        self.tabToRemove = None
+        
     def appendTabWidget(self, tab_ui: TabWidget):
         self.ctrl.ui.main_page.main.list.insertWidget(
             self.ctrl.ui.main_page.main.list.count()-1,tab_ui

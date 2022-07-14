@@ -69,6 +69,8 @@ class TabWidget(QFrame):
         
         self.setMaximumHeight(100)
         
+        self._id = None
+        
         self.main = QHBoxLayout()
 
         self.service_label = QLabel("GitHub")
@@ -95,6 +97,9 @@ class TabWidget(QFrame):
         self.main.addLayout(self.options_layout)
         
         self.setLayout(self.main)
+        
+    def setId(self, _id):
+        self._id = _id
 
 class SearchLayout(QHBoxLayout):
     def __init__(self):

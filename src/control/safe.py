@@ -1,6 +1,7 @@
 import os
 import base64
 import json
+import uuid
 from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
@@ -13,7 +14,7 @@ class SafeControl:
         self.path: str = None
         self.f = None
         self.fnet: Fernet = None
-        self.data = []
+        self.data = {}
         self.prepend = None
         
     def setPath(self, path):
@@ -81,12 +82,18 @@ class SafeControl:
         self.f.truncate()
             
     def addAccount(self, service, username, password):
+        _id = str(uuid.uuid4())
         acc = {
             "service": service,
             "username": username,
             "password": password
         }
-        self.data.append(acc)
+        self.data[_id] = acc
+        self.save()
+        return _id
+        
+    def removeAccount(self, _id):
+        del self.data[_id]
         self.save()
         
     def reset(self):
