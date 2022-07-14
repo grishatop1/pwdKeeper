@@ -75,8 +75,10 @@ class SafeControl:
     def save(self):
         data = json.dumps(self.data)
         ciphertext = self.fnet.encrypt(data.encode("utf-8"))
+        self.f.seek(0)
         self.f.write(self.prepend)
         self.f.write(ciphertext)
+        self.f.truncate()
             
     def addAccount(self, service, username, password):
         acc = {
