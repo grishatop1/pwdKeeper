@@ -1,6 +1,6 @@
 import os
 import base64
-import pickle
+import json
 from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
@@ -65,17 +65,16 @@ class SafeControl:
         
         rawdata = self.f.read()
         data = self.fnet.decrypt(rawdata)
-        self.data = pickle.loads(data)
+        self.data = json.loads(data.decode("utf-8"))
         return True
-        
         
     def close(self, *args):
         if self.f:
             self.f.close()
             
     def save(self):
-        data = pickle.dumps(self.data)
-        ciphertext = self.fnet.encrypt(data)
+        data = json.dumps(self.data)
+        ciphertext = self.fnet.encrypt(data.encode("utf-8"))
         self.f.write(self.prepend)
         self.f.write(ciphertext)
             
