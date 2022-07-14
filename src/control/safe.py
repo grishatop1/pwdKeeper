@@ -15,7 +15,7 @@ class SafeControl:
         self.f = None
         self.fnet: Fernet = None
         self.data = []
-        self.prepend = BytesIO()
+        self.prepend = b""
         
     def setPath(self, path):
         self.path = path
@@ -32,25 +32,37 @@ class SafeControl:
             iterations=500000,
             backend=default_backend()
         )
-        kdf_hash = PBKDF2HMAC(
+        key = base64.urlsafe_b64encode(kdf.derive(password))
+        digest = hashes.Hash(hashes.SHA256(), default_backend())
+        digest.update(key)
+        _hash = digest.finalize()
+        
+        self.fnet = Fernet(key)
+        self.prepend = salt + _hash
+        self.save()
+        #salt16 + hash32 = first 48 bytes for auth
+        
+    def load(self, pwd):
+        self.f = open(self.path, "rb+")
+        password = pwd.encode("utf-8")
+        salt = self.f.read(16)
+        kdf = PBKDF2HMAC(
             algorithm=hashes.SHA256(),
             length=32,
             salt=salt,
             iterations=500000,
             backend=default_backend()
         )
-        key = base64.urlsafe_b64encode(kdf.derive(password))
-        _hash = kdf_hash.derive(key)
-
-        self.fnet = Fernet(key)
-        self.prepend.write(salt)
-        self.prepend.write(_hash)
-        self.save()
-        #salt16 + hash32 = first 48 bytes for auth
+        usr_key = base64.urlsafe_b64encode(kdf.derive(password))
+        digest = hashes.Hash(hashes.SHA256(), default_backend())
+        digest.update(usr_key)
+        user_hash = digest.finalize()
+        _hash = self.f.read(32)
+        if user_hash != _hash:
+            print("AUTH FAILED")
+        else:
+            print("LOGIN SUCCESS")
         
-    def load(self, pwd):
-        self.f = open(self.path, "wb+")
-        password = pwd.encode("utf-8")
         
     def close(self, *args):
         if self.f:
@@ -59,10 +71,8 @@ class SafeControl:
     def save(self):
         data = pickle.dumps(self.data)
         ciphertext = self.fnet.encrypt(data)
-        prepend = self.prepend.read()
-        self.f.write(prepend)
+        self.f.write(self.prepend)
         self.f.write(ciphertext)
-        self.prepend.seek(0)
             
     def addAccount(self, service, username, password):
         acc = {
