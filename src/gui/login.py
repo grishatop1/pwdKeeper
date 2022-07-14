@@ -41,6 +41,12 @@ class LoginPage(QWidget):
         self.enter_btn = QPushButton(text="Enter!")
         self.enter_btn.setMinimumWidth(250)
         self.main.addWidget(self.enter_btn, alignment=Qt.AlignCenter)
+        
+        self.error_label = QLabel("Error")
+        self.error_label.setStyleSheet("color: red;")
+        self.error_label.setAlignment(Qt.AlignHCenter)
+        self.error_label.hide()
+        self.main.addWidget(self.error_label)
 
         self.main.addStretch()
         self.wrapper.addLayout(self.main)

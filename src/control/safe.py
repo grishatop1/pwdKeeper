@@ -1,7 +1,6 @@
 import os
 import base64
 import pickle
-from io import BytesIO
 from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
@@ -59,9 +58,15 @@ class SafeControl:
         user_hash = digest.finalize()
         _hash = self.f.read(32)
         if user_hash != _hash:
-            print("AUTH FAILED")
-        else:
-            print("LOGIN SUCCESS")
+            return
+        
+        self.fnet = Fernet(usr_key)
+        self.prepend = salt + _hash
+        
+        rawdata = self.f.read()
+        data = self.fnet.decrypt(rawdata)
+        self.data = pickle.loads(data)
+        return True
         
         
     def close(self, *args):
@@ -71,8 +76,7 @@ class SafeControl:
     def save(self):
         data = pickle.dumps(self.data)
         ciphertext = self.fnet.encrypt(data)
-        self.f.write(self.prepend)
-        self.f.write(ciphertext)
+        self.f.write(self.prepend + ciphertext)
             
     def addAccount(self, service, username, password):
         acc = {
