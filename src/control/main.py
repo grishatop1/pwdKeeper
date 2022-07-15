@@ -107,3 +107,13 @@ class MainControl:
         for tab in self.tabs:
             tab.deleteLater()
         self.tabs = []
+        
+        
+class Tab:
+    def __init__(self, ctrl, _id, service, username, password):
+        self.ctrl = ctrl
+        self._id = _id
+        self.service = service
+        self.username = username
+        self.password = password
+        self.ui = TabWidget()
