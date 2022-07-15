@@ -10,6 +10,8 @@ from PyQt5.QtWidgets import QLabel
 from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QComboBox
 
+from data.services import services
+
 
 class ServiceDialog(QDialog):
     def __init__(self):
@@ -32,6 +34,7 @@ class ServiceDialog(QDialog):
         self.combox.setPlaceholderText("Select a service")
         self.combox.setEditable(True)
         self.combox.setFixedWidth(300)
+        self.combox.addItems(services)
         self.form.addRow(self.combox_label, self.combox)
         self.username_label = QLabel(text="Username:")
         self.username_entry = QLineEdit()
@@ -74,6 +77,9 @@ class EditTab(QDialog):
         self.combox.setPlaceholderText("Select a service")
         self.combox.setEditable(True)
         self.combox.setFixedWidth(300)
+        
+        self.combox.addItems()
+        
         self.form.addRow(self.combox_label, self.combox)
         self.username_label = QLabel(text="Username:")
         self.username_entry = QLineEdit()
