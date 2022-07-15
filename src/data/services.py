@@ -1,12 +1,20 @@
 services = [
-    "GitHub",
-    "reddit",
-    "Instagram",
-    "Facebook",
-    "Twitter",
-    "Firefox account",
+    "Amazon",
     "Discord",
+    "Facebook",
+    "Firefox account",
+    "GitHub",
+    "Google account",
+    "Instagram",
+    "Microsoft",
+    "Netflix",
+    "Reddit",
+    "Roblox",
+    "Steam",
+    "TikTok",
     "Twitch",
-    "Tiktok",
-    "Google account"
+    "Twitter",
+    "Wikipedia",
+    "Yahoo",
+    "Yandex"
 ]
