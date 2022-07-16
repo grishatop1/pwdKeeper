@@ -1,5 +1,6 @@
 services = [
     "Amazon",
+    "Deviantart",
     "Discord",
     "Facebook",
     "Firefox account",
