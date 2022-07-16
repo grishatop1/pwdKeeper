@@ -82,12 +82,14 @@ class SafeControl:
     def makeBackup(self):
         f, _ = os.path.splitext(self.path)
         fname = os.path.basename(f)
-        shutil.copyfile(
-            self.path,
-            os.path.join(
+        newPath = os.path.join(
                 self.ctrl.cache.PATH, 
                 f"{fname}.pwdBackup"
             )
+        os.remove(newPath)
+        shutil.copyfile(
+            self.path,
+            newPath
         )
             
     def save(self):
