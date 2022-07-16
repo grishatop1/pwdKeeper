@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import QWidget
 from gui.intro import IntroPage
 from gui.create import CreatePasswordPage
 from gui.login import LoginPage
+from gui.lost import LostPage
 from gui.main import MainPage
 
 from control.controller import Controller
@@ -35,6 +36,9 @@ class Window(QWidget):
 
         self.main_page = MainPage()
         self.stacked.addWidget(self.main_page)
+        
+        self.lost_page = LostPage()
+        self.stacked.addWidget(self.lost_page)
     
         self.setLayout(self.stacked)
 

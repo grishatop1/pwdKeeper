@@ -3,6 +3,7 @@ from control.cache import CacheManager
 from control.create import CreatePageCtrl
 from control.intro import IntroCtrl
 from control.login import LoginCtrl
+from control.lost import LostCtrl
 from control.main import MainControl
 from control.safe import SafeControl
 
@@ -19,6 +20,7 @@ class Controller:
         self.bacc = BackCtrl(self)
         
         self.cache = CacheManager(self)
+        self.lost = LostCtrl(self)
         
         self.ui.closeEvent = self.safe.close
         
