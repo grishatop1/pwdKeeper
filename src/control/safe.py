@@ -2,6 +2,8 @@ import os
 import base64
 import json
 import uuid
+import shutil
+import datetime
 from cryptography.fernet import Fernet
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives import hashes
@@ -70,8 +72,24 @@ class SafeControl:
         return True
         
     def close(self, *args):
+        try:
+            self.makeBackup()
+        except:
+            pass
         if self.f:
             self.f.close()
+            
+    def makeBackup(self):
+        dt = datetime.datetime.now().strftime("%d-%m-%y-%H-%M-%S")
+        f, _ = os.path.splitext(self.path)
+        fname = os.path.basename(f)
+        shutil.copyfile(
+            self.path,
+            os.path.join(
+                self.ctrl.cache.PATH, 
+                f"{fname} {dt}.pwdBackup"
+            )
+        )
             
     def save(self):
         data = json.dumps(self.data)

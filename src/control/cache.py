@@ -2,17 +2,19 @@ import os
 import pickle
 
 class CacheManager:
-    PATH = os.path.join(
-        os.path.expanduser("~"),
-        ".pwdKeeper"
-    )
-    FPATH = os.path.join(
-        PATH,
-        "cache"
-    )
     def __init__(self, ctrl):
         self.ctrl = ctrl
         self.f = None
+
+        self.PATH = os.path.join(
+        os.path.expanduser("~"),
+        ".pwdKeeper"
+        )
+        self.FPATH = os.path.join(
+            self.PATH,
+            "cache"
+        )
+        
         self.load()
         
     def writePath(self):
