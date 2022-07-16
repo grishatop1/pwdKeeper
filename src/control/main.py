@@ -10,8 +10,8 @@ class MainControl:
         
         self.addDialog: ServiceDialog = None
         self.tabs = []
-        self.tabToRemove = None
-        self.tabToEdit = None
+        self.selectedTab = None
+        self.dialog = None
     
     def connectWidgets(self):
         self.ctrl.ui.main_page.search.add_btn.clicked.connect(self.openAddAccountDialog)
@@ -22,98 +22,88 @@ class MainControl:
         self.ctrl.reset()
     
     def openAddAccountDialog(self):
-        self.addDialog = ServiceDialog()
-        self.addDialog.add_btn.clicked.connect(self.addAccount)
-        self.addDialog.exec()
+        self.dialog = ServiceDialog()
+        self.dialog.add_btn.clicked.connect(self.addAccount)
+        self.dialog.exec()
         
     def addAccount(self):
-        service = self.addDialog.combox.currentText()
-        username = self.addDialog.username_entry.text()
-        password = self.addDialog.password_entry.text()
+        service = self.dialog.combox.currentText()
+        username = self.dialog.username_entry.text()
+        password = self.dialog.password_entry.text()
         if service == "" or username == "" or password == "":
             return
-        
         _id = self.ctrl.safe.addAccount(service, username, password)
-        tab_ui = self.createTabWidget(service, username, password)
-        tab_ui.setId(_id)
-        self.appendTabWidget(tab_ui)
-        self.addDialog.close()
-        
-    def openEditAccountDialog(self, tab_ui):
-        tab = self.ctrl.safe.data[tab_ui._id]
-        self.tabToEdit = tab_ui
-        self.editDialog = EditTab(
-            tab["service"], tab["username"], tab["password"]
-        )
-        self.editDialog.change_btn.clicked.connect(self.editTab)
-        self.editDialog.exec()
-        
-    def editTab(self):
-        service = self.editDialog.combox.currentText()
-        username = self.editDialog.username_entry.text()
-        password = self.editDialog.password_entry.text()
-        self.ctrl.safe.editAccount(self.tabToEdit._id, service, username, password)
-        self.tabToEdit.service_label.setText(service)
-        self.tabToEdit.username_label.setText(f"Username: <b>{username}</b>")
-        self.tabToEdit.password_label.setText(f"Password: <b>{password}</b>")
-        self.tabToEdit = None
-        self.editDialog.close()
+        tab = Tab(self, _id, service, username, password)
+        self.tabs.append(tab) 
+        self.dialog.close()
+        self.dialog = None
         
     def loadEverything(self):
         data = self.ctrl.safe.data
         
-        for _id, tab in data.items():
-            tab_ui = self.createTabWidget(
-                tab["service"], tab["username"], tab["password"]
-            )
-            tab_ui.setId(_id)
-            self.appendTabWidget(tab_ui)
-       
-            
-    def createTabWidget(self, service, username, password):
-        tab_ui = TabWidget()
-        tab_ui.service_label.setText(service)
-        tab_ui.username_label.setText(f"Username: <b>{username}</b>")
-        tab_ui.password_label.setText(f"Password: <b>{password}</b>")
-        tab_ui.remove_btn.clicked.connect(lambda: self.askToRemoveTab(tab_ui))
-        tab_ui.edit_btn.clicked.connect(lambda: self.openEditAccountDialog(tab_ui))
-        return tab_ui
+        for _id, _tab in data.items():
+            tab = Tab(self, _id, _tab["service"], _tab["username"], _tab["password"])
+            self.tabs.append(tab)
     
-    def askToRemoveTab(self, tab_ui):
-        self.tabToRemove = tab_ui
+    def openRemoveAccountDialog(self, tab):
+        self.selectedTab = tab
         dialog = QMessageBox()
         dialog.setText("Do u really want to remove this account?")
         dialog.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
-        dialog.buttonClicked.connect(self.tabRemoovation)
+        dialog.buttonClicked.connect(self.removeTab)
         dialog.exec()
         
-    def tabRemoovation(self, i):
+    def removeTab(self, i):
         if i.text() == "&Yes":
-            self.removeTab()
-    
-    def removeTab(self):
-        self.tabs.remove(self.tabToRemove)
-        self.tabToRemove.deleteLater()
-        self.ctrl.safe.removeAccount(self.tabToRemove._id)
-        self.tabToRemove = None
-        
-    def appendTabWidget(self, tab_ui: TabWidget):
-        self.ctrl.ui.main_page.main.list.insertWidget(
-            self.ctrl.ui.main_page.main.list.count()-1,tab_ui
-        )
-        self.tabs.append(tab_ui)
+            self.ctrl.safe.removeAccount(self.selectedTab._id)
+            self.selectedTab.remove()
+            self.tabs.remove(self.selectedTab)
         
     def clearTabs(self):
         for tab in self.tabs:
-            tab.deleteLater()
+            tab.remove()
         self.tabs = []
         
         
 class Tab:
-    def __init__(self, ctrl, _id, service, username, password):
-        self.ctrl = ctrl
+    def __init__(self, main, _id, service, username, password):
+        self.main = main
         self._id = _id
         self.service = service
         self.username = username
         self.password = password
         self.ui = TabWidget()
+        self.dialog = None
+        self.setUI()
+        self.setUIBindings()
+        self.addToUI()
+        
+    def setUI(self):
+        self.ui.service_label.setText(self.service)
+        self.ui.username_label.setText(f"Username: <b>{self.username}</b>")
+        self.ui.password_label.setText(f"Password: <b>{self.password}</b>")
+        
+    def setUIBindings(self):
+        self.ui.edit_btn.clicked.connect(self.openEditAccountDialog)
+        self.ui.remove_btn.clicked.connect(lambda: self.main.openRemoveAccountDialog(self))
+        
+    def addToUI(self):
+        self.main.ctrl.ui.main_page.main.list.insertWidget(
+            self.main.ctrl.ui.main_page.main.list.count()-1,self.ui
+        )
+        
+    def remove(self):
+        self.ui.deleteLater()
+        
+    def openEditAccountDialog(self):
+        self.dialog = EditTab(self.service, self.username, self.password)
+        self.dialog.change_btn.clicked.connect(self.edit)
+        self.dialog.exec()
+        
+    def edit(self):
+        self.service = self.dialog.combox.currentText()
+        self.username = self.dialog.username_entry.text()
+        self.password = self.dialog.password_entry.text()
+        self.main.ctrl.safe.editAccount(self._id, self.service, self.username, self.password)
+        self.setUI()
+        self.dialog.close()
