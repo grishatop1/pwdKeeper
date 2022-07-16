@@ -15,6 +15,7 @@ class LoginCtrl:
             self.showError("Wrong password!")
             return
         
+        self.ctrl.cache.writePath()
         self.ctrl.main.loadEverything()
         self.ctrl.ui.stacked.setCurrentIndex(3)
         

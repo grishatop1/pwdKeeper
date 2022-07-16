@@ -1,3 +1,4 @@
+from control.cache import CacheManager
 from control.create import CreatePageCtrl
 from control.intro import IntroCtrl
 from control.login import LoginCtrl
@@ -14,6 +15,8 @@ class Controller:
         self.create = CreatePageCtrl(self)
         self.login = LoginCtrl(self)
         self.main = MainControl(self)
+        
+        self.cache = CacheManager(self)
         
         self.ui.closeEvent = self.safe.close
         

@@ -35,6 +35,7 @@ class CreatePageCtrl:
         self.ctrl.safe.create(self.pwd)
         self.ctrl.main.loadEverything()
         self.ctrl.ui.stacked.setCurrentIndex(3)
+        self.ctrl.cache.writePath()
         #move safe create to another thread....
         
     def setEnabled(self):

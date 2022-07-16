@@ -22,6 +22,9 @@ class IntroCtrl:
         if path:
             self.ctrl.safe.setPath(path)
             self.ctrl.ui.stacked.setCurrentIndex(1)
+            self.ctrl.ui.create_page.path_label.setText(
+                path
+            )
             
     def loadSafePick(self):
         dialog = QFileDialog()
@@ -33,3 +36,6 @@ class IntroCtrl:
         if path:
             self.ctrl.safe.setPath(path)
             self.ctrl.ui.stacked.setCurrentIndex(2)
+            self.ctrl.ui.login_page.path_label.setText(
+                path
+            )

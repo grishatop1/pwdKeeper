@@ -31,6 +31,7 @@ class MainControl:
                 tab.ui.show()
         
     def backToTheLobby(self):
+        self.ctrl.cache.removePath()
         self.ctrl.ui.stacked.setCurrentIndex(0)
         self.ctrl.reset()
     
