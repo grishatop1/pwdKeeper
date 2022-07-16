@@ -95,11 +95,13 @@ class Tab:
     def setUI(self):
         self.ui.service_label.setText(self.service)
         self.ui.username_label.setText(f"Username: <b>{self.username}</b>")
-        self.ui.password_label.setText(f"Password: <b>{self.password}</b>")
+        self.ui.password_label.setText(f"Password: <b>***</b>")
         
     def setUIBindings(self):
         self.ui.edit_btn.clicked.connect(self.openEditAccountDialog)
         self.ui.remove_btn.clicked.connect(lambda: self.main.openRemoveAccountDialog(self))
+        self.ui.password_label.enterEvent = self.showPass
+        self.ui.password_label.leaveEvent = self.hidePass
         
     def addToUI(self):
         self.main.ctrl.ui.main_page.main.list.insertWidget(
@@ -121,3 +123,9 @@ class Tab:
         self.main.ctrl.safe.editAccount(self._id, self.service, self.username, self.password)
         self.setUI()
         self.dialog.close()
+        
+    def showPass(self, *args):
+        self.ui.password_label.setText(f"Password: <b>{self.password}</b>")
+        
+    def hidePass(self, *args):
+        self.ui.password_label.setText(f"Password: <b>***</b>")
