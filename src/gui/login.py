@@ -10,6 +10,8 @@ from PyQt5.QtWidgets import QLabel
 from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QProgressBar
 
+from gui.bacctointro import BackWidget
+
 class LoginPage(QWidget):
     def __init__(self):
         super().__init__()
@@ -51,8 +53,13 @@ class LoginPage(QWidget):
         self.error_label.setAlignment(Qt.AlignHCenter)
         self.error_label.hide()
         self.main.addWidget(self.error_label)
-
+        
         self.main.addStretch()
+        
+        self.bacc = BackWidget()
+        self.main.addWidget(self.bacc, alignment=Qt.AlignCenter)
+
         self.wrapper.addLayout(self.main)
         self.wrapper.addStretch()
+        
         self.setLayout(self.wrapper)

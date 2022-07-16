@@ -1,3 +1,4 @@
+from control.bacc import BackCtrl
 from control.cache import CacheManager
 from control.create import CreatePageCtrl
 from control.intro import IntroCtrl
@@ -15,6 +16,7 @@ class Controller:
         self.create = CreatePageCtrl(self)
         self.login = LoginCtrl(self)
         self.main = MainControl(self)
+        self.bacc = BackCtrl(self)
         
         self.cache = CacheManager(self)
         

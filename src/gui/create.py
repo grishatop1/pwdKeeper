@@ -10,6 +10,8 @@ from PyQt5.QtWidgets import QLabel
 from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QProgressBar
 
+from gui.bacctointro import BackWidget
+
 class CreatePasswordPage(QWidget):
     def __init__(self):
         super().__init__()
@@ -52,8 +54,12 @@ class CreatePasswordPage(QWidget):
         self.enter_btn.setMinimumWidth(250)
         self.enter_btn.setDisabled(True)
         self.main.addWidget(self.enter_btn, alignment=Qt.AlignCenter)
-
+        
         self.main.addStretch()
+        
+        self.bacc = BackWidget()
+        self.main.addWidget(self.bacc, alignment=Qt.AlignCenter)
+
         self.wrapper.addLayout(self.main)
         self.wrapper.addStretch()
         self.setLayout(self.wrapper)
