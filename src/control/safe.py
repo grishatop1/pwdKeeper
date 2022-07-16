@@ -80,14 +80,13 @@ class SafeControl:
             self.f.close()
             
     def makeBackup(self):
-        dt = datetime.datetime.now().strftime("%d-%m-%y-%H-%M-%S")
         f, _ = os.path.splitext(self.path)
         fname = os.path.basename(f)
         shutil.copyfile(
             self.path,
             os.path.join(
                 self.ctrl.cache.PATH, 
-                f"{fname} {dt}.pwdBackup"
+                f"{fname}.pwdBackup"
             )
         )
             
