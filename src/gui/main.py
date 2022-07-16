@@ -114,7 +114,7 @@ class SearchLayout(QHBoxLayout):
         self.addWidget(self.search)
         
         self.add_btn = QPushButton("+")
-        self.add_btn.setStyleSheet("font-weight: bold;")
+        self.add_btn.setStyleSheet("font-weight: bold; font-size:16px;")
         self.add_btn.setMaximumWidth(50)
         self.addWidget(self.add_btn)
         
