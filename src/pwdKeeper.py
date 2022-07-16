@@ -43,6 +43,7 @@ class Window(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    app.setStyle("QtCurve")
     window = Window()
     window.show()
 
