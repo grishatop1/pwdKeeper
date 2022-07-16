@@ -51,6 +51,8 @@ class LoginCtrl:
     def resetForm(self):
         self.hideError()
         self.ctrl.ui.login_page.pwd_entry.setText("")
+        self.ctrl.ui.login_page.enter_btn.setText("Enter!")
+        self.ctrl.ui.login_page.enter_btn.setDisabled(False)
         
 class Worker(QObject):
     done_signal = pyqtSignal()

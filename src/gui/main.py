@@ -73,8 +73,9 @@ class TabWidget(QFrame):
         
         self.main = QHBoxLayout()
 
-        self.service_label = QLabel("GitHub")
+        self.service_label = QLabel()
         self.service_label.setStyleSheet("font-weight: bold; font-size: 17px;")
+        self.service_label.setMinimumWidth(120)
         self.main.addWidget(self.service_label)
         
         self.main.addSpacing(25)
