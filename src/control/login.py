@@ -6,12 +6,17 @@ class LoginCtrl:
         self.ctrl = ctrl
         self.connectWidgets()
         
+        self.thread = None
+        
     def connectWidgets(self):
         self.ctrl.ui.login_page.enter_btn.clicked.connect(self.proceed)
         self.ctrl.ui.login_page.pwd_entry.returnPressed.connect(self.proceed)
         self.ctrl.ui.login_page.pwd_entry.textChanged.connect(self.hideError)
         
     def proceed(self):
+        
+        if self.thread:
+            return
         
         self.ctrl.ui.login_page.enter_btn.setText("Checking...")
         self.ctrl.ui.login_page.enter_btn.setDisabled(True)
@@ -32,6 +37,7 @@ class LoginCtrl:
         )
         
     def done(self, result):
+        self.thread = None
         if result:
             self.ctrl.cache.writePath()
             self.ctrl.main.loadEverything()

@@ -5,6 +5,7 @@ class CreatePageCtrl:
     def __init__(self, ctrl):
         self.ctrl = ctrl
         self.connectWidgets()
+        self.thread = None
         
         self.pwd = None
     
@@ -31,9 +32,12 @@ class CreatePageCtrl:
     def proceed(self):
         if not self.validate(): return #na svaki slucaj
         
+        if self.thread:
+            return
+        
         self.ctrl.ui.create_page.enter_btn.setText("Creating...")
         self.setDisabled()
-        
+
         self.thread = QThread()
         self.worker = Worker(self.ctrl, self.pwd)
         self.worker.moveToThread(self.thread)
@@ -48,6 +52,7 @@ class CreatePageCtrl:
         )
         
     def done(self):
+        self.thread = None
         self.ctrl.main.loadEverything()
         self.ctrl.ui.stacked.setCurrentIndex(3)
         self.ctrl.cache.writePath()
