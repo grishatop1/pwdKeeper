@@ -12,10 +12,24 @@ class MainControl:
         self.tabs = []
         self.selectedTab = None
         self.dialog = None
+        self.search_text = ""
     
     def connectWidgets(self):
+        self.ctrl.ui.main_page.search.search.textChanged.connect(self.search)
         self.ctrl.ui.main_page.search.add_btn.clicked.connect(self.openAddAccountDialog)
         self.ctrl.ui.main_page.toolbar.logout_btn.clicked.connect(self.backToTheLobby)
+        
+    def search(self):
+        srch = self.ctrl.ui.main_page.search.search.text()
+        srch = srch.lower()
+        for tab in self.tabs:
+            service = tab.service.lower()
+            username = tab.username.lower()
+            password = tab.password.lower()
+            if not srch in service and not srch in username and not srch in password:
+                tab.ui.hide()
+            else:
+                tab.ui.show()
         
     def backToTheLobby(self):
         self.ctrl.ui.stacked.setCurrentIndex(0)
