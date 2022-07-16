@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 
@@ -64,12 +64,12 @@ class MainLayout(QHBoxLayout):
         self.list.addStretch()
         
 class TabWidget(QFrame):
-    def __init__(self):
+    def __init__(self, base):
         super().__init__()
         
         self.setMaximumHeight(100)
         
-        self._id = None
+        self.base = base
         
         self.main = QHBoxLayout()
 
@@ -84,8 +84,10 @@ class TabWidget(QFrame):
         self.vbox = QVBoxLayout()
         self.vbox.addStretch()
         self.username_label = QLabel("Username: grishatop1")
+        self.username_label.mousePressEvent = self.copyUsername
         self.vbox.addWidget(self.username_label)
         self.password_label = QLabel("Password: horsecookie123")
+        self.password_label.mousePressEvent = self.copyPassword
         self.vbox.addWidget(self.password_label)
         self.vbox.addStretch()
         self.main.addLayout(self.vbox, 2)
@@ -100,8 +102,11 @@ class TabWidget(QFrame):
         
         self.setLayout(self.main)
         
-    def setId(self, _id):
-        self._id = _id
+    def copyUsername(self, *args):
+        QApplication.clipboard().setText(self.base.username)
+        
+    def copyPassword(self, *args):
+        QApplication.clipboard().setText(self.base.password)
 
 class SearchLayout(QHBoxLayout):
     def __init__(self):

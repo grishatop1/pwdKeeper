@@ -86,7 +86,7 @@ class Tab:
         self.service = service
         self.username = username
         self.password = password
-        self.ui = TabWidget()
+        self.ui = TabWidget(self)
         self.dialog = None
         self.setUI()
         self.setUIBindings()
