@@ -12,7 +12,6 @@ class MainControl:
         self.tabs = []
         self.selectedTab = None
         self.dialog = None
-        self.search_text = ""
     
     def connectWidgets(self):
         self.ctrl.ui.main_page.search.search.textChanged.connect(self.search)
