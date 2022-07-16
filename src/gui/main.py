@@ -76,6 +76,7 @@ class TabWidget(QFrame):
         self.service_label = QLabel()
         self.service_label.setStyleSheet("font-weight: bold; font-size: 17px;")
         self.service_label.setMinimumWidth(150)
+        self.service_label.setAlignment(Qt.AlignCenter)
         self.main.addWidget(self.service_label)
         
         self.main.addSpacing(25)
