@@ -1,4 +1,5 @@
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QObject, pyqtSignal
+from PyQt5.QtCore import QThread
 
 class CreatePageCtrl:
     def __init__(self, ctrl):
@@ -30,13 +31,26 @@ class CreatePageCtrl:
     def proceed(self):
         if not self.validate(): return #na svaki slucaj
         
-        self.ctrl.ui.create_page.enter_btn.setText("Loading...")
+        self.ctrl.ui.create_page.enter_btn.setText("Creating...")
         self.setDisabled()
-        self.ctrl.safe.create(self.pwd)
+        
+        self.thread = QThread()
+        self.worker = Worker(self.ctrl, self.pwd)
+        self.worker.moveToThread(self.thread)
+        self.thread.started.connect(self.worker.run)
+        self.worker.done_signal.connect(self.thread.quit)
+        self.worker.done_signal.connect(self.worker.deleteLater)
+        self.thread.finished.connect(self.thread.deleteLater)
+        self.thread.start()
+        
+        self.thread.finished.connect(
+            self.done
+        )
+        
+    def done(self):
         self.ctrl.main.loadEverything()
         self.ctrl.ui.stacked.setCurrentIndex(3)
         self.ctrl.cache.writePath()
-        #move safe create to another thread....
         
     def setEnabled(self):
         self.ctrl.ui.create_page.enter_btn.setDisabled(False)
@@ -49,3 +63,14 @@ class CreatePageCtrl:
         self.setEnabled()
         self.ctrl.ui.create_page.pwd_entry.setText("")
         self.ctrl.ui.create_page.pwd2_entry.setText("")
+        
+class Worker(QObject):
+    done_signal = pyqtSignal()
+    def __init__(self, ctrl, pwd):
+        super().__init__()
+        self.ctrl = ctrl
+        self.pwd = pwd
+        
+    def run(self):
+        self.ctrl.safe.create(self.pwd)
+        self.done_signal.emit()
