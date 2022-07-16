@@ -77,5 +77,6 @@ class Worker(QObject):
         self.pwd = pwd
         
     def run(self):
-        self.ctrl.safe.create(self.pwd)
+        if self.ctrl.safe.f:
+            self.ctrl.safe.create(self.pwd)
         self.done_signal.emit()

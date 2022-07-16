@@ -69,5 +69,6 @@ class Worker(QObject):
         self.result = None
         
     def run(self):
-        self.result = self.ctrl.safe.load(self.pwd)
+        if self.ctrl.safe.f:
+            self.result = self.ctrl.safe.load(self.pwd)
         self.done_signal.emit()
