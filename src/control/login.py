@@ -20,6 +20,7 @@ class LoginCtrl:
         
         self.ctrl.ui.login_page.enter_btn.setText("Checking...")
         self.ctrl.ui.login_page.enter_btn.setDisabled(True)
+        self.ctrl.ui.login_page.bacc.btn.setDisabled(True)
         
         pwd = self.ctrl.ui.login_page.pwd_entry.text()
         
@@ -46,6 +47,7 @@ class LoginCtrl:
             self.showError("Wrong password!")
             self.ctrl.ui.login_page.enter_btn.setText("Enter!")
             self.ctrl.ui.login_page.enter_btn.setDisabled(False)
+            self.ctrl.ui.login_page.bacc.btn.setDisabled(False)
         
     def showError(self, text):
         self.ctrl.ui.login_page.error_label.setText(text)
@@ -59,6 +61,7 @@ class LoginCtrl:
         self.ctrl.ui.login_page.pwd_entry.setText("")
         self.ctrl.ui.login_page.enter_btn.setText("Enter!")
         self.ctrl.ui.login_page.enter_btn.setDisabled(False)
+        self.ctrl.ui.login_page.bacc.btn.setDisabled(False)
         
 class Worker(QObject):
     done_signal = pyqtSignal()

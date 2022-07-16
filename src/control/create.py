@@ -36,6 +36,7 @@ class CreatePageCtrl:
             return
         
         self.ctrl.ui.create_page.enter_btn.setText("Creating...")
+        self.ctrl.ui.create_page.bacc.btn.setDisabled(True)
         self.setDisabled()
 
         self.thread = QThread()
@@ -68,6 +69,7 @@ class CreatePageCtrl:
         self.setEnabled()
         self.ctrl.ui.create_page.pwd_entry.setText("")
         self.ctrl.ui.create_page.pwd2_entry.setText("")
+        self.ctrl.ui.create_page.bacc.btn.setDisabled(False)
         
 class Worker(QObject):
     done_signal = pyqtSignal()
