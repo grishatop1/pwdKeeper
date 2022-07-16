@@ -86,7 +86,10 @@ class SafeControl:
                 self.ctrl.cache.PATH, 
                 f"{fname}.pwdBackup"
             )
-        os.remove(newPath)
+        try:
+            os.remove(newPath)
+        except:
+            pass
         shutil.copyfile(
             self.path,
             newPath

@@ -26,7 +26,7 @@ class LoginPage(QWidget):
         self.main.addWidget(self.label)
         
         self.path_label = QLabel(text="...")
-        self.path_label.setStyleSheet("color: lightgray;")
+        self.path_label.setStyleSheet("color: gray;")
         self.main.addWidget(self.path_label, alignment=Qt.AlignCenter)
 
         self.main.addSpacing(50)
