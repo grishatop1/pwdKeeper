@@ -39,7 +39,7 @@ class MainControl:
         usernames = []
         for _id, data in self.ctrl.safe.data.items():
             usernames.append(data["username"])
-        self.dialog = ServiceDialog(usernames)
+        self.dialog = ServiceDialog(list(set(usernames)))
         self.dialog.add_btn.clicked.connect(self.addAccount)
         self.dialog.exec()
         
