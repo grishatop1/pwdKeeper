@@ -3,16 +3,6 @@ from PyQt5.QtCore import QThread
 from zxcvbn import zxcvbn
 
 class CreatePageCtrl:
-    
-    #not in use rn
-    pwd_dict = {
-        0: ["This password is terrible.", "red"],
-        1: ["Such a weak password", "yellow"],
-        2: ["Password is ok.", None],
-        3: ["Good password", None],
-        4: ["Great password", "lightgreen"]
-    }
-    
     def __init__(self, ctrl):
         self.ctrl = ctrl
         self.connectWidgets()
