@@ -47,7 +47,7 @@ class CreatePageCtrl:
         result = zxcvbn(pwd)
         crack = result["crack_times_display"]["offline_slow_hashing_1e4_per_second"]
 
-        self.ctrl.ui.create_page.crack_label.setText(f"Possible to crack in {crack}")
+        self.ctrl.ui.create_page.crack_label.setText(f"Brute force estimation: {crack}")
         
     def uncheckPassword(self):
         self.ctrl.ui.create_page.crack_label.setText("")
