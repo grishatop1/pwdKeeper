@@ -36,13 +36,16 @@ class MainControl:
         self.ctrl.reset()
     
     def openAddAccountDialog(self):
-        self.dialog = ServiceDialog()
+        usernames = []
+        for _id, data in self.ctrl.safe.data.items():
+            usernames.append(data["username"])
+        self.dialog = ServiceDialog(usernames)
         self.dialog.add_btn.clicked.connect(self.addAccount)
         self.dialog.exec()
         
     def addAccount(self):
         service = self.dialog.combox.currentText()
-        username = self.dialog.username_entry.text()
+        username = self.dialog.username_combox.currentText()
         password = self.dialog.password_entry.text()
         if service == "" or username == "" or password == "":
             return

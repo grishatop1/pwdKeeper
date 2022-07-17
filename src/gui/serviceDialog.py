@@ -14,7 +14,7 @@ from data.services import services
 
 
 class ServiceDialog(QDialog):
-    def __init__(self):
+    def __init__(self, usernames=[]):
         super().__init__()
 
         self.main = QVBoxLayout()
@@ -37,9 +37,12 @@ class ServiceDialog(QDialog):
         self.combox.addItems(services)
         self.form.addRow(self.combox_label, self.combox)
         self.username_label = QLabel(text="Username:")
-        self.username_entry = QLineEdit()
-        self.username_entry.setFixedWidth(350)
-        self.form.addRow(self.username_label, self.username_entry)
+        self.username_combox = QComboBox()
+        self.username_combox.setFixedWidth(350)
+        self.username_combox.setEditable(True)
+        self.username_combox.addItems(usernames)
+        self.username_combox.setCurrentText("")
+        self.form.addRow(self.username_label, self.username_combox)
         self.password_label = QLabel(text="Password:")
         self.password_entry = QLineEdit()
         self.password_entry.setFixedWidth(350)
