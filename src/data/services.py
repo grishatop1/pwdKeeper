@@ -11,11 +11,13 @@ services = [
     "Netflix",
     "Reddit",
     "Roblox",
+    "RuTracker",
     "Steam",
     "TikTok",
     "Twitch",
     "Twitter",
     "Wikipedia",
+    "WoW",
     "Yahoo",
     "Yandex"
 ]
