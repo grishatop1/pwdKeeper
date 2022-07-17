@@ -21,7 +21,7 @@ class Window(QWidget):
         self.setWindowIcon(QIcon("../assets/lockie.png"))
         self.setWindowTitle("pwdKeeper")
         self.resize(1024, 576)
-        self.setMinimumSize(720, 320)
+        self.setMinimumSize(720, 420)
 
         self.stacked = QStackedLayout()
 

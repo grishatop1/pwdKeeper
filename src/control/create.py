@@ -1,7 +1,18 @@
 from PyQt5.QtCore import QObject, pyqtSignal
 from PyQt5.QtCore import QThread
+from zxcvbn import zxcvbn
 
 class CreatePageCtrl:
+    
+    #not in use rn
+    pwd_dict = {
+        0: ["This password is terrible.", "red"],
+        1: ["Such a weak password", "yellow"],
+        2: ["Password is ok.", None],
+        3: ["Good password", None],
+        4: ["Great password", "lightgreen"]
+    }
+    
     def __init__(self, ctrl):
         self.ctrl = ctrl
         self.connectWidgets()
@@ -20,14 +31,26 @@ class CreatePageCtrl:
         pwd2 = self.ctrl.ui.create_page.pwd2_entry.text()
         if len(pwd1) < 6:
             self.setDisabled()
+            self.uncheckPassword()
             return
         if pwd1 != pwd2:
             self.setDisabled()
+            self.uncheckPassword()
             return
         
+        self.checkPassword(pwd1)
         self.pwd = pwd1
         self.setEnabled()
         return True
+    
+    def checkPassword(self, pwd):
+        result = zxcvbn(pwd)
+        crack = result["crack_times_display"]["offline_slow_hashing_1e4_per_second"]
+
+        self.ctrl.ui.create_page.crack_label.setText(f"Possible to crack in {crack}")
+        
+    def uncheckPassword(self):
+        self.ctrl.ui.create_page.crack_label.setText("")
     
     def proceed(self):
         if not self.validate(): return #na svaki slucaj
@@ -70,6 +93,7 @@ class CreatePageCtrl:
         self.ctrl.ui.create_page.pwd_entry.setText("")
         self.ctrl.ui.create_page.pwd2_entry.setText("")
         self.ctrl.ui.create_page.bacc.btn.setDisabled(False)
+        self.uncheckPassword()
         
 class Worker(QObject):
     done_signal = pyqtSignal()

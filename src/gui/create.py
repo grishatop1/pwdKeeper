@@ -22,6 +22,8 @@ class CreatePasswordPage(QWidget):
 
         self.wrapper.addStretch()
         self.main.addStretch()
+        
+        self.main.addSpacing(30)
 
         self.label = QLabel(text="Create a password for the new safe")
         self.label.setStyleSheet("font-size: 40px;")
@@ -54,6 +56,10 @@ class CreatePasswordPage(QWidget):
         self.enter_btn.setMinimumWidth(250)
         self.enter_btn.setDisabled(True)
         self.main.addWidget(self.enter_btn, alignment=Qt.AlignCenter)
+        
+        self.crack_label = QLabel()
+        self.crack_label.setStyleSheet("color: grey;")
+        self.main.addWidget(self.crack_label, alignment=Qt.AlignCenter)
         
         self.main.addStretch()
         
