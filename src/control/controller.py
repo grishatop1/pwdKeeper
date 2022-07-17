@@ -19,8 +19,8 @@ class Controller:
         self.main = MainControl(self)
         self.bacc = BackCtrl(self)
         
-        self.cache = CacheManager(self)
         self.lost = LostCtrl(self)
+        self.cache = CacheManager(self)
         
         self.ui.closeEvent = self.safe.close
         

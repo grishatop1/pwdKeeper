@@ -50,7 +50,7 @@ class CacheManager:
             return
         
         if not os.path.exists(data["lastPath"]):
-            self.ctrl.ui.lost_page.path.setText(f"<b>{data['lastPath']}</b> is missing.")
+            self.ctrl.lost.setPath(data['lastPath'])
             self.ctrl.ui.stacked.setCurrentIndex(4)
             return
         
