@@ -7,7 +7,7 @@ QScrollArea QWidget {
     background-color: rgb(31, 31, 31);
 }
 
-QScrollArea#scrollarea {
+QScrollArea {
     background-color: rgb(31, 31, 31);
     border-radius: 10px;
     padding: 5px;
