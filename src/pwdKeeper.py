@@ -51,6 +51,8 @@ if __name__ == "__main__":
         app.setStyle("QtCurve")
     elif sys.platform == "win32":
         app.setStyle("fusion")
+        
+    app.setStyleSheet(r"QPushButton {padding: 7px;}")
     window = Window()
     window.show()
 
