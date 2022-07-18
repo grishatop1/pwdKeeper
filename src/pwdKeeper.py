@@ -50,7 +50,7 @@ if __name__ == "__main__":
     if sys.platform == "linux":
         app.setStyle("QtCurve")
     elif sys.platform == "win32":
-        app.setStyle("windowsvista")
+        app.setStyle("fusion")
     window = Window()
     window.show()
 
