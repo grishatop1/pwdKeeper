@@ -16,13 +16,21 @@ QScrollArea {
 QLineEdit {
     padding: 5px;
     background-color: rgb(31, 31, 31);
-    border-radius: 5px;
+    border-radius: 3px;
     border: 1px solid gray;
 }
 
 QComboBox {
     padding: 5px;
     background-color: rgb(31, 31, 31);
+    border-radius: 3px;
+    border: 1px solid gray;
+}
+
+QComboBox::drop-down {
+    border-image: url("../assets/arrowdown.png") 0 0 0 0 stretch stretch;
+    width: 14px;
+    height: 14px;
 }
 
 QPushButton {
