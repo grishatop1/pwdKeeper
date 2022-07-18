@@ -47,7 +47,10 @@ class Window(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    app.setStyle("QtCurve")
+    if sys.platform == "linux":
+        app.setStyle("QtCurve")
+    elif sys.platform == "win32":
+        app.setStyle("windowsvista")
     window = Window()
     window.show()
 
