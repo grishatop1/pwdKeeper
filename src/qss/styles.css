@@ -1,0 +1,68 @@
+QWidget {
+    background-color: rgb(43, 43, 43);
+    color: white;
+}
+
+QScrollArea QWidget {
+    background-color: rgb(31, 31, 31);
+}
+
+QScrollArea#scrollarea {
+    background-color: rgb(31, 31, 31);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+QLineEdit {
+    padding: 5px;
+    background-color: rgb(31, 31, 31);
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
+QComboBox {
+    padding: 5px;
+    background-color: rgb(31, 31, 31);
+}
+
+QPushButton {
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid rgb(128, 128, 128);
+    background-color: rgb(68, 68, 68);
+}
+
+QPushButton:hover {
+    background-color: rgb(51, 51, 51);
+}
+
+QPushButton:disabled {
+    background-color: rgb(37, 37, 37);
+}
+
+QScrollBar:vertical {
+    border-color: #424242;
+    border-width: 1px;
+    border-style: solid;
+    background-color: #131313;
+    width: 12px;
+    margin: 5px 0 5px 0;
+    border-radius: 5px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: rgb(189, 189, 189);
+    min-height: 25px;
+    border-radius:5px;
+    border: none;
+}
+
+QScrollBar::add-line:vertical {
+    width: 0px;
+    height: 0px;
+}
+
+QScrollBar::sub-line:vertical {
+    width: 0px;
+    height: 0px;
+}

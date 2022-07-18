@@ -47,12 +47,9 @@ class Window(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    if sys.platform == "linux":
-        app.setStyle("QtCurve")
-    elif sys.platform == "win32":
-        app.setStyle("fusion")
+    app.setStyle("Fusion")
         
-    app.setStyleSheet(r"QPushButton {padding: 7px;}")
+    app.setStyleSheet(open("qss/styles.css").read())
     window = Window()
     window.show()
 
