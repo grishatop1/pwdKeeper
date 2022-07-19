@@ -1,4 +1,6 @@
 from PyQt5.QtWidgets import QMessageBox
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import QTimer
 
 from gui.serviceDialog import EditTab, ServiceDialog
 from gui.main import TabWidget
@@ -89,22 +91,31 @@ class Tab:
         self.service = service
         self.username = username
         self.password = password
-        self.ui = TabWidget(self)
+        self.ui = TabWidget()
         self.dialog = None
         self.setUI()
         self.setUIBindings()
         self.addToUI()
         
+        self.copyUsernameTimer = None
+        self.copyPasswordTimer = None
+        
     def setUI(self):
         self.ui.service_label.setText(self.service)
         self.ui.username_label.setText(f"Username: <b>{self.username}</b>")
         self.ui.password_label.setText(f"Password: <b>***</b>")
+        self.copyUsernameTimer = None
+        self.copyPasswordTimer = None
+        self.ui.username_label.setStyleSheet("")
+        self.ui.password_label.setStyleSheet("")
         
     def setUIBindings(self):
         self.ui.edit_btn.clicked.connect(self.openEditAccountDialog)
         self.ui.remove_btn.clicked.connect(lambda: self.main.openRemoveAccountDialog(self))
         self.ui.password_label.enterEvent = self.showPass
         self.ui.password_label.leaveEvent = self.hidePass
+        self.ui.username_label.mousePressEvent = self.copyUsername
+        self.ui.password_label.mousePressEvent = self.copyPassword
         
     def addToUI(self):
         self.main.ctrl.ui.main_page.main.list.insertWidget(
@@ -132,3 +143,23 @@ class Tab:
         
     def hidePass(self, *args):
         self.ui.password_label.setText(f"Password: <b>***</b>")
+        
+    def copyUsername(self, *args):
+        if self.copyUsernameTimer: return
+        self.ui.username_label.setText("<b>Copied to clipboard!</b>")
+        self.ui.username_label.setStyleSheet("color: lightgreen;")
+        self.copyUsernameTimer = QTimer()
+        self.copyUsernameTimer.setSingleShot(True)
+        self.copyUsernameTimer.start(500)
+        self.copyUsernameTimer.timeout.connect(self.setUI)
+        QApplication.clipboard().setText(self.username)
+        
+    def copyPassword(self, *args):
+        if self.copyPasswordTimer: return
+        self.ui.password_label.setText("<b>Copied to clipboard!</b>")
+        self.ui.password_label.setStyleSheet("color: lightgreen;")
+        self.copyPasswordTimer = QTimer()
+        self.copyPasswordTimer.setSingleShot(True)
+        self.copyPasswordTimer.start(500)
+        self.copyPasswordTimer.timeout.connect(self.setUI)
+        QApplication.clipboard().setText(self.password)
