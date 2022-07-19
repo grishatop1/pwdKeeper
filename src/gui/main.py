@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtCore import Qt, QPointF
+from PyQt5.QtGui import QPixmap, QColor
 
 from PyQt5.QtWidgets import QFrame
 from PyQt5.QtWidgets import QVBoxLayout
@@ -45,7 +45,7 @@ class MainLayout(QHBoxLayout):
         self.stacked.setStackingMode(QStackedLayout.StackAll)
         self.scroll.setWidgetResizable(True)
         self.list.setContentsMargins(15,15,15,15)
-        self.list.setSpacing(10)
+        self.list.setSpacing(30)
         
         self.list.addStretch()
         
@@ -70,6 +70,13 @@ class TabWidget(QFrame):
         super().__init__()
         
         self.setMaximumHeight(100)
+        self.setStyleSheet("border-radius: 10px;")
+        
+        self.shadow = QGraphicsDropShadowEffect(self,
+            blurRadius=15.0,
+            offset=QPointF(0,0),
+            color=QColor(0,0,0, 60)
+        )
         
         self.main = QHBoxLayout()
 
@@ -99,6 +106,7 @@ class TabWidget(QFrame):
         self.main.addLayout(self.options_layout)
         
         self.setLayout(self.main)
+        self.setGraphicsEffect(self.shadow)
 
 class SearchLayout(QHBoxLayout):
     def __init__(self):
