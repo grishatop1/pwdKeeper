@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QFrame
 from PyQt5.QtWidgets import QVBoxLayout
 from PyQt5.QtWidgets import QHBoxLayout
 from PyQt5.QtWidgets import QScrollArea
+from PyQt5.QtWidgets import QStackedLayout
 
 from PyQt5.QtWidgets import QPushButton
 from PyQt5.QtWidgets import QLabel
@@ -37,31 +38,32 @@ class MainLayout(QHBoxLayout):
         
         self.scroll = QScrollArea()
         self.w = QWidget()
+        self.list_w = QWidget()
         self.list = QVBoxLayout()
+        self.stacked = QStackedLayout()
         
+        self.stacked.setStackingMode(QStackedLayout.StackAll)
         self.scroll.setWidgetResizable(True)
         self.list.setContentsMargins(15,15,15,15)
         self.list.setSpacing(10)
         
         self.list.addStretch()
         
+        self.list_w.setLayout(self.list)
+        
+        self.stacked.addWidget(self.list_w)
+        
+        self.empty_label = QLabel("Uh, such an empty place...")
+        self.empty_label.setAlignment(Qt.AlignCenter)
+        self.empty_label.setStyleSheet("color: #525252; font-size: 20px; font-weight: bold; background-color: transparent;")
+        self.empty_label.hide()
+        self.stacked.addWidget(self.empty_label)
+        
         #adding to qwidget the layout
-        self.w.setLayout(self.list)
+        self.w.setLayout(self.stacked)
         
         self.scroll.setWidget(self.w)
         self.addWidget(self.scroll)
-        
-    def setEmptyLabel(self):
-        self.label = QLabel("Such an empty place here :3")
-        self.label.setStyleSheet("color: #525252; font-size: 20px; font-weight: bold;")
-        self.label.setAlignment(Qt.AlignCenter)
-        self.list.insertWidget(0, self.label)
-        
-        
-    def removeEmptyLabel(self):
-        self.label.deleteLater()
-        self.label_hidden = True
-        self.list.addStretch()
         
 class TabWidget(QFrame):
     def __init__(self):

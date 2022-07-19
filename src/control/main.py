@@ -64,6 +64,9 @@ class MainControl:
             tab = Tab(self, _id, _tab["service"], _tab["username"], _tab["password"])
             self.tabs.append(tab)
             
+        if not data:
+            self.ctrl.ui.main_page.main.empty_label.show()
+            
         self.ctrl.ui.main_page.toolbar.txt.setText(
             f"<font color='gray'>{self.ctrl.safe.fname}</font> - autosave is <font color='lightgreen'>on</font>"
         )
@@ -81,6 +84,8 @@ class MainControl:
             self.ctrl.safe.removeAccount(self.selectedTab._id)
             self.selectedTab.remove()
             self.tabs.remove(self.selectedTab)
+            if not self.ctrl.safe.data:
+                self.ctrl.ui.main_page.main.empty_label.show()
         
     def clearTabs(self):
         for tab in self.tabs:
@@ -125,6 +130,7 @@ class Tab:
         self.main.ctrl.ui.main_page.main.list.insertWidget(
             self.main.ctrl.ui.main_page.main.list.count()-1,self.ui
         )
+        self.main.ctrl.ui.main_page.main.empty_label.hide()
         
     def remove(self):
         self.ui.deleteLater()
