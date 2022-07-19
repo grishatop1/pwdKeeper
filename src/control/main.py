@@ -139,9 +139,11 @@ class Tab:
         self.dialog.close()
         
     def showPass(self, *args):
+        if self.copyPasswordTimer: return
         self.ui.password_label.setText(f"Password: <b>{self.password}</b>")
         
     def hidePass(self, *args):
+        if self.copyPasswordTimer: return
         self.ui.password_label.setText(f"Password: <b>***</b>")
         
     def copyUsername(self, *args):
