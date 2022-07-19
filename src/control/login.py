@@ -40,9 +40,7 @@ class LoginCtrl:
     def done(self, result):
         self.thread = None
         if result:
-            self.ctrl.cache.writePath()
-            self.ctrl.main.loadEverything()
-            self.ctrl.ui.stacked.setCurrentIndex(3)
+            self.ctrl.enterMain()
         else:
             self.showError("Wrong password!")
             self.ctrl.ui.login_page.enter_btn.setText("Enter!")

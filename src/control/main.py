@@ -63,6 +63,10 @@ class MainControl:
         for _id, _tab in data.items():
             tab = Tab(self, _id, _tab["service"], _tab["username"], _tab["password"])
             self.tabs.append(tab)
+            
+        self.ctrl.ui.main_page.toolbar.txt.setText(
+            f"<font color='gray'>{self.ctrl.safe.fname}</font> - autosave is <font color='lightgreen'>on</font>"
+        )
     
     def openRemoveAccountDialog(self, tab):
         self.selectedTab = tab

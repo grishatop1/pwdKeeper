@@ -14,6 +14,7 @@ class SafeControl:
         self.ctrl = ctrl
         
         self.path: str = None
+        self.fname = None
         self.f = None
         self.fnet: Fernet = None
         self.data = {}
@@ -21,6 +22,7 @@ class SafeControl:
         
     def setPath(self, path):
         self.path = path
+        self.fname = os.path.basename(self.path)
         
     def create(self, pwd):
         self.f = open(self.path, "wb+")

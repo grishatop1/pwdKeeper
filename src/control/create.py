@@ -67,9 +67,7 @@ class CreatePageCtrl:
         
     def done(self):
         self.thread = None
-        self.ctrl.main.loadEverything()
-        self.ctrl.ui.stacked.setCurrentIndex(3)
-        self.ctrl.cache.writePath()
+        self.ctrl.enterMain()
         
     def setEnabled(self):
         self.ctrl.ui.create_page.enter_btn.setDisabled(False)

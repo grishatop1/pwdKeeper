@@ -29,3 +29,8 @@ class Controller:
         self.create.resetForm()
         self.safe.reset()
         self.main.clearTabs()
+        
+    def enterMain(self):
+        self.cache.writePath()
+        self.main.loadEverything()
+        self.ui.stacked.setCurrentIndex(3)
