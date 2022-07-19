@@ -47,7 +47,7 @@ class IntroPage(QWidget):
         
         self.main.addStretch()
         
-        self.aes = QLabel(text="Heavy encryption is in use! Just make sure your password is strong enough.")
+        self.aes = QLabel(text="Heavy encryption is in use! Just make sure your safe password is strong enough.")
         self.aes.setStyleSheet("color: gray;")
         self.aes.setAlignment(Qt.AlignCenter)
         self.main.addWidget(self.aes)
