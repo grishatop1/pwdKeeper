@@ -18,6 +18,7 @@ class IntroPage(QWidget):
         self.main.addStretch()
         
         self.label = QLabel(text="pwdKeeper")
+        self.label.setAlignment(Qt.AlignCenter)
         self.label.setStyleSheet("font-size: 50px; font-weight: bold;")
         self.main.addWidget(self.label)
 
@@ -43,8 +44,13 @@ class IntroPage(QWidget):
         self.btns.addWidget(self.load_btn)
         
         self.main.addLayout(self.btns)
-
+        
         self.main.addStretch()
+        
+        self.aes = QLabel(text="Heavy encryption is in use! Just make sure your password is strong enough.")
+        self.aes.setStyleSheet("color: gray;")
+        self.aes.setAlignment(Qt.AlignCenter)
+        self.main.addWidget(self.aes)
 
         self.wrapper.addLayout(self.main)
 
