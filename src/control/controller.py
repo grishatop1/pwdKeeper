@@ -6,6 +6,7 @@ from control.login import LoginCtrl
 from control.lost import LostCtrl
 from control.main import MainControl
 from control.safe import SafeControl
+from control.shortcuts import ShortcutsCtrl
 
 class Controller:
     def __init__(self, ui):
@@ -21,6 +22,7 @@ class Controller:
         
         self.lost = LostCtrl(self)
         self.cache = CacheManager(self)
+        self.shortcuts = ShortcutsCtrl(self)
         
         self.ui.closeEvent = self.safe.close
         
@@ -34,3 +36,7 @@ class Controller:
         self.cache.writePath()
         self.main.loadEverything()
         self.ui.stacked.setCurrentIndex(3)
+
+    def isMainActive(self):
+        if self.ui.stacked.currentIndex() == 3:
+            return True
