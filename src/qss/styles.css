@@ -1,6 +1,9 @@
 QWidget {
     background-color: rgb(43, 43, 43);
     color: white;
+    outline: 0px;
+    outline: none;
+    outline-style: none;
 }
 
 QScrollArea QWidget {
