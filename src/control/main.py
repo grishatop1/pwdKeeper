@@ -111,11 +111,17 @@ class Tab:
         
     def setUI(self):
         self.ui.service_label.setText(self.service)
+        self.setUIUsername()
+        self.setUIPassword()
+
+    def setUIUsername(self):
         self.ui.username_label.setText(f"Username: <b>{self.username}</b>")
-        self.ui.password_label.setText(f"Password: <b>***</b>")
         self.copyUsernameTimer = None
-        self.copyPasswordTimer = None
         self.ui.username_label.setStyleSheet("")
+
+    def setUIPassword(self):
+        self.ui.password_label.setText(f"Password: <b>***</b>")
+        self.copyPasswordTimer = None
         self.ui.password_label.setStyleSheet("")
         
     def setUIBindings(self):
@@ -163,7 +169,7 @@ class Tab:
         self.copyUsernameTimer = QTimer()
         self.copyUsernameTimer.setSingleShot(True)
         self.copyUsernameTimer.start(500)
-        self.copyUsernameTimer.timeout.connect(self.setUI)
+        self.copyUsernameTimer.timeout.connect(self.setUIUsername)
         QApplication.clipboard().setText(self.username)
         
     def copyPassword(self, *args):
@@ -173,5 +179,5 @@ class Tab:
         self.copyPasswordTimer = QTimer()
         self.copyPasswordTimer.setSingleShot(True)
         self.copyPasswordTimer.start(500)
-        self.copyPasswordTimer.timeout.connect(self.setUI)
+        self.copyPasswordTimer.timeout.connect(self.setUIPassword)
         QApplication.clipboard().setText(self.password)
