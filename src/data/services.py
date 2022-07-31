@@ -5,7 +5,7 @@ services = [
     "Facebook",
     "Firefox account",
     "GitHub",
-    "Google account",
+    "Google",
     "Instagram",
     "Microsoft",
     "Netflix",
@@ -19,5 +19,11 @@ services = [
     "Wikipedia",
     "WoW",
     "Yahoo",
-    "Yandex"
+    "Yandex",
+    "Apple",
+    "Microsoft",
+    "Riot Games",
+    "Telegram",
+    "Snapchat",
+    "HBO Max"
 ]
