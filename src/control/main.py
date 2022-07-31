@@ -1,6 +1,9 @@
+import os
+
 from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QApplication
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, Qt
+from PyQt5.QtGui import QPixmap
 
 from gui.serviceDialog import EditTab, ServiceDialog
 from gui.main import TabWidget
@@ -110,6 +113,11 @@ class Tab:
         self.copyPasswordTimer = None
         
     def setUI(self):
+        logo_path = f"../assets/app/{self.service.lower()}.png"
+        if os.path.exists(logo_path):
+            self.ui.service_logo.setPixmap(QPixmap(logo_path).scaledToWidth(48, Qt.TransformationMode.SmoothTransformation))
+        else:
+            self.ui.service_logo.setPixmap(QPixmap("../assets/app/default.png").scaledToWidth(48, Qt.TransformationMode.SmoothTransformation))
         self.ui.service_label.setText(self.service)
         self.setUIUsername()
         self.setUIPassword()

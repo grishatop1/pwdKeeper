@@ -80,22 +80,31 @@ class TabWidget(QFrame):
         
         self.main = QHBoxLayout()
 
+        self.service_layout = QHBoxLayout()
+        self.main.addLayout(self.service_layout)
+
+        self.service_logo = QLabel()
+        self.service_layout.addWidget(self.service_logo)
+
         self.service_label = QLabel()
         self.service_label.setStyleSheet("font-weight: bold; font-size: 17px;")
-        self.service_label.setMinimumWidth(200)
+        self.service_label.setMinimumWidth(100)
         self.service_label.setAlignment(Qt.AlignCenter)
-        self.main.addWidget(self.service_label)
-        
-        self.main.addSpacing(25)
+        self.service_layout.addWidget(self.service_label)
+
+        self.service_layout.addStretch()
+
+        self.main.addSpacing(80)
         
         self.vbox = QVBoxLayout()
+        self.main.addLayout(self.vbox, 2)
         self.vbox.addStretch()
         self.username_label = QLabel("Username: grishatop1")
         self.vbox.addWidget(self.username_label)
         self.password_label = QLabel("Password: horsecookie123")
         self.vbox.addWidget(self.password_label)
         self.vbox.addStretch()
-        self.main.addLayout(self.vbox, 2)
+        
         
         self.options_layout = QVBoxLayout()
         self.edit_btn = QPushButton(text="Edit")
