@@ -36,7 +36,7 @@ class ServiceDialog(QDialog):
         self.combox.setFixedWidth(300)
         self.combox.addItems(services)
         self.form.addRow(self.combox_label, self.combox)
-        self.username_label = QLabel(text="Username:")
+        self.username_label = QLabel(text="Username/Email:")
         self.username_combox = QComboBox()
         self.username_combox.setFixedWidth(350)
         self.username_combox.setEditable(True)
