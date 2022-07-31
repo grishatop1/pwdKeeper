@@ -117,7 +117,7 @@ class SearchLayout(QHBoxLayout):
         self.search = QLineEdit()
         self.search.setPlaceholderText("Search....")
         self.search.setMinimumWidth(500)
-        self.search.setStyleSheet("padding: 7px;")
+        self.search.setStyleSheet(r"QLineEdit:focus {border: 1px solid #03fccf;} QLineEdit {padding:7px;}")
         self.addWidget(self.search)
         
         self.add_btn = QPushButton("+")
