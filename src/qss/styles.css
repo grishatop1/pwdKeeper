@@ -1,5 +1,5 @@
 QWidget {
-    background-color: rgb(43, 43, 43);
+    background-color: rgb(36, 36, 36);
     color: white;
     outline: 0px;
     outline: none;
@@ -39,8 +39,8 @@ QComboBox::drop-down {
 QPushButton {
     padding: 7px;
     border-radius: 5px;
-    border: 1px solid rgb(128, 128, 128);
-    background-color: rgb(68, 68, 68);
+    border: 1px solid rgb(94, 94, 94);
+    background-color: rgb(59, 59, 59);
 }
 
 QPushButton:hover {

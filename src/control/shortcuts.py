@@ -14,6 +14,8 @@ class ShortcutsCtrl:
 
         self.search_focus1 = QShortcut(QKeySequence("Ctrl+f"), self.ctrl.ui)
         self.search_focus1.activated.connect(self.focus_on_search)
+        self.search_focus2 = QShortcut(QKeySequence("f3"), self.ctrl.ui)
+        self.search_focus2.activated.connect(self.focus_on_search)
 
     def add_dialog_open(self):
         if not self.ctrl.isMainActive(): return
