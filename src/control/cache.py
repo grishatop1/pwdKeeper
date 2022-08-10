@@ -8,7 +8,7 @@ class CacheManager:
 
         self.PATH = os.path.join(
         os.path.expanduser("~"),
-        ".pwdKeeper"
+        ".local", "share", "pwdKeeper"
         )
         self.FPATH = os.path.join(
             self.PATH,
