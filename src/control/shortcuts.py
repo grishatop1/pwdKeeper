@@ -17,6 +17,11 @@ class ShortcutsCtrl:
         self.search_focus2 = QShortcut(QKeySequence("f3"), self.ctrl.ui)
         self.search_focus2.activated.connect(self.focus_on_search)
 
+        self.help_window1 = QShortcut(QKeySequence("f1"), self.ctrl.ui)
+        self.help_window1.activated.connect(self.help_dialog_open)
+        self.help_window1 = QShortcut(QKeySequence("ctrl+h"), self.ctrl.ui)
+        self.help_window1.activated.connect(self.help_dialog_open)
+
     def add_dialog_open(self):
         if not self.ctrl.isMainActive(): return
         self.ctrl.main.openAddAccountDialog()
@@ -24,3 +29,6 @@ class ShortcutsCtrl:
     def focus_on_search(self):
         if not self.ctrl.isMainActive(): return
         self.ctrl.ui.main_page.search.search.setFocus()
+
+    def help_dialog_open(self):
+        self.ctrl.help.openHelpWindow()

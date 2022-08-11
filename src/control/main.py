@@ -123,7 +123,7 @@ class Tab:
         self.setUIPassword()
 
     def setUIUsername(self):
-        self.ui.username_label.setText(f"Username: <b>{self.username}</b>")
+        self.ui.username_label.setText(f"Login: <b>{self.username}</b>")
         self.copyUsernameTimer = None
         self.ui.username_label.setStyleSheet("")
 
