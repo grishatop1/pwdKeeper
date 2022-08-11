@@ -7,6 +7,7 @@ from control.lost import LostCtrl
 from control.main import MainControl
 from control.safe import SafeControl
 from control.shortcuts import ShortcutsCtrl
+from control.help import HelpCtrl
 
 class Controller:
     def __init__(self, ui):
@@ -19,6 +20,7 @@ class Controller:
         self.login = LoginCtrl(self)
         self.main = MainControl(self)
         self.bacc = BackCtrl(self)
+        self.help = HelpCtrl(self)
         
         self.lost = LostCtrl(self)
         self.cache = CacheManager(self)

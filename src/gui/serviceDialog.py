@@ -84,7 +84,7 @@ class EditTab(QDialog):
         self.combox.addItems(services)
         
         self.form.addRow(self.combox_label, self.combox)
-        self.username_label = QLabel(text="Username:")
+        self.username_label = QLabel(text="Username/email:")
         self.username_entry = QLineEdit()
         self.username_entry.setText(username)
         self.username_entry.setFixedWidth(350)

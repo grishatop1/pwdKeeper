@@ -153,5 +153,8 @@ class ToolbarLayout(QHBoxLayout):
 
         self.addStretch()
 
+        self.help_btn = QPushButton(text="Help")
+        self.addWidget(self.help_btn)
+
         self.logout_btn = QPushButton(text="Change the safe")
         self.addWidget(self.logout_btn)
