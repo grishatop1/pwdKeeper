@@ -3,7 +3,7 @@ from PyQt5.QtCore import Qt
 
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtWidgets import QVBoxLayout
-from PyQt5.QtWidgets import QHBoxLayout
+from PyQt5.QtWidgets import QSizePolicy
 from PyQt5.QtWidgets import QScrollArea
 
 from PyQt5.QtWidgets import QPushButton
@@ -32,7 +32,7 @@ class HelpWindow(QWidget):
         self.main_label.setAlignment(Qt.AlignCenter)
 
         self.content = QLabel("""
-<p><strong>Safe creation</strong></p>
+<h1>Safe creation</h1>
 <p>To start working with pwdKeeper, click on the &#39;Create a new safe&#39; button. A save
 file dialog will pop up. Enter a name for your safe, keeping the .pwdKeeper file
 extension intact.</p>
@@ -41,13 +41,13 @@ password correctly in the second input field, a brute force estimation will pop
 up below the &#39;Enter!&#39; button. This is an estimate of how long it might take an
 attacker to crack the password to your safe. Therefore, make sure you use a
 strong password that would take a longer time to be cracked.</p>
-<p><strong>Safe interior</strong></p>
+<h1>Safe interior</h1>
 <p>When you create a password and enter the safe, you will be presented with its
 interior. There is a search bar, a button to add new entries, and a list of
 entries. Also present is a button to change to another safe, as well as a
 button to display this help window. In the top left corner, you can see the name of
 the safe you are in at the moment.</p>
-<p><strong>Safe usage</strong></p>
+<h1>Safe usage</h1>
 <p>Click on the button with a green plus - the add entry button - to add an entry
 to your safe. A new window will pop up, prompting you to enter the name of the
 service and the login details (username or email, and password).</p>
@@ -72,12 +72,13 @@ load file dialog using the two buttons.</p>
 program the next time you will immediately be prompted to enter the password for
 that safe (the path to the safe will be displayed so you know which safe you are
 entering). This is the same password prompt as when you load an existing safe. </p>
-<p><strong>Hotkeys</strong></p>
-<p>Display this help window - Ctrl-H, F1</p>
-<p>Focus on the search bar - Ctrl-F, F3</p>
-<p>Open entry creation dialog - Ctrl-N, Ctrl-T. F5</p>""")
+<h1>Hotkeys</h1>
+<p>Display this help window - Ctrl+H, F1</p>
+<p>Focus on the search bar - Ctrl+F, F3</p>
+<p>Open entry creation dialog - Ctrl+N, Ctrl+T. F5</p>""")
         self.content.setWordWrap(True)
         self.content.setTextFormat(Qt.RichText)
+        self.content.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
 
         self.vbox.addWidget(self.main_label)
         self.vbox.addSpacing(20)
