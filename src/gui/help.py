@@ -15,7 +15,7 @@ class HelpWindow(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setFixedSize(700,400)
+        self.setFixedSize(700,600)
         
         self.all = QVBoxLayout()
         self.main = QScrollArea()
