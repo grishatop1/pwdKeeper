@@ -1,13 +1,13 @@
-from control.bacc import BackCtrl
-from control.cache import CacheManager
-from control.create import CreatePageCtrl
-from control.intro import IntroCtrl
-from control.login import LoginCtrl
-from control.lost import LostCtrl
-from control.main import MainControl
-from control.safe import SafeControl
-from control.shortcuts import ShortcutsCtrl
-from control.help import HelpCtrl
+from .bacc import BackCtrl
+from .cache import CacheManager
+from .create import CreatePageCtrl
+from .intro import IntroCtrl
+from .login import LoginCtrl
+from .lost import LostCtrl
+from .main import MainControl
+from .safe import SafeControl
+from .shortcuts import ShortcutsCtrl
+from .help import HelpCtrl
 
 class Controller:
     def __init__(self, ui):
