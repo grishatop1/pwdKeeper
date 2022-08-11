@@ -10,6 +10,7 @@ class HelpCtrl:
 
     def connectWidgets(self):
         self.ctrl.ui.main_page.toolbar.help_btn.clicked.connect(self.openHelpWindow)
+        self.ctrl.ui.intro_page.help_btn.clicked.connect(self.openHelpWindow)
 
     def openHelpWindow(self):
         self.dia = HelpWindow()

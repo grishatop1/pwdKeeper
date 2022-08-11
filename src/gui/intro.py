@@ -46,11 +46,18 @@ class IntroPage(QWidget):
         self.main.addLayout(self.btns)
         
         self.main.addStretch()
+
+        self.bottom_hv = QHBoxLayout()
         
         self.aes = QLabel(text="Heavy encryption is in use! Just make sure your safe password is strong enough.")
         self.aes.setStyleSheet("color: gray;")
         self.aes.setAlignment(Qt.AlignCenter)
-        self.main.addWidget(self.aes)
+        self.bottom_hv.addWidget(self.aes)
+
+        self.help_btn = QPushButton("Help")
+        self.bottom_hv.addWidget(self.help_btn)
+
+        self.main.addLayout(self.bottom_hv)
 
         self.wrapper.addLayout(self.main)
 

@@ -21,12 +21,12 @@ class LostPage(QWidget):
         self.title.setStyleSheet("font-size: 40px; font-weight: bold;")
         self.main.addWidget(self.title)
         
-        self.path = QLabel("/home/... is missing!")
+        self.path = QLabel("/path/to/safe is missing!")
         self.path.setAlignment(Qt.AlignCenter)
         self.main.addWidget(self.path)
         
         self.btns_layout = QHBoxLayout()
-        self.locate_btn = QPushButton("Relocate")
+        self.locate_btn = QPushButton("Locate")
         self.locate_btn.setMaximumWidth(200)
         self.btns_layout.addWidget(self.locate_btn)
         self.load_btn = QPushButton("Load from backup")
