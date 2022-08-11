@@ -14,6 +14,9 @@ from gui.main import MainPage
 
 from control.controller import Controller
 
+import signal
+signal.signal(signal.SIGINT, signal.SIG_DFL)
+
 class Window(QWidget):
     def __init__(self):
         super().__init__()
