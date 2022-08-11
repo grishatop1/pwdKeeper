@@ -32,6 +32,10 @@ class HelpWindow(QWidget):
         self.main_label.setAlignment(Qt.AlignCenter)
 
         self.content = QLabel("""
+<h1>Hotkeys</h1>
+<p>Display this help window - Ctrl+H, F1</p>
+<p>Focus on the search bar - Ctrl+F, F3</p>
+<p>Open entry creation dialog - Ctrl+N, Ctrl+T. F5</p>
 <h1>Safe creation</h1>
 <p>To start working with pwdKeeper, click on the &#39;Create a new safe&#39; button. A save
 file dialog will pop up. Enter a name for your safe, keeping the .pwdKeeper file
@@ -41,6 +45,7 @@ password correctly in the second input field, a brute force estimation will pop
 up below the &#39;Enter!&#39; button. This is an estimate of how long it might take an
 attacker to crack the password to your safe. Therefore, make sure you use a
 strong password that would take a longer time to be cracked.</p>
+<p>If you click on the &#39;Back&#39; button, the safe file will not be created.</p>
 <h1>Safe interior</h1>
 <p>When you create a password and enter the safe, you will be presented with its
 interior. There is a search bar, a button to add new entries, and a list of
@@ -77,11 +82,7 @@ opening it, you will see a screen telling you that the file has been lost. You
 will be presented with three options. Clicking on the &#39;Locate&#39; button will let
 you locate the safe again. Clicking on the &#39;Load from backup&#39; button will load
 from the automatic safe backup location. Finally, if you click on the &#39;I don&#39;t
-care&#39; button, you will be returned to the intro screen.</p>
-<h1>Hotkeys</h1>
-<p>Display this help window - Ctrl+H, F1</p>
-<p>Focus on the search bar - Ctrl+F, F3</p>
-<p>Open entry creation dialog - Ctrl+N, Ctrl+T. F5</p>""")
+care&#39; button, you will be returned to the intro screen.</p>""")
         self.content.setWordWrap(True)
         self.content.setTextFormat(Qt.RichText)
         self.content.setSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
