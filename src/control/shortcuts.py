@@ -19,8 +19,8 @@ class ShortcutsCtrl:
 
         self.help_window1 = QShortcut(QKeySequence("f1"), self.ctrl.ui)
         self.help_window1.activated.connect(self.help_dialog_open)
-        self.help_window1 = QShortcut(QKeySequence("ctrl+h"), self.ctrl.ui)
-        self.help_window1.activated.connect(self.help_dialog_open)
+        self.help_window2 = QShortcut(QKeySequence("ctrl+h"), self.ctrl.ui)
+        self.help_window2.activated.connect(self.help_dialog_open)
 
     def add_dialog_open(self):
         if not self.ctrl.isMainActive(): return
