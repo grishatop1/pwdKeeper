@@ -71,7 +71,13 @@ load file dialog using the two buttons.</p>
 <p>If you exit pwdKeeper without previously exiting the safe, upon entering the
 program the next time you will immediately be prompted to enter the password for
 that safe (the path to the safe will be displayed so you know which safe you are
-entering). This is the same password prompt as when you load an existing safe. </p>
+entering). This is the same password prompt as when you load an existing safe.</p>
+<p>If you delete or relocate your safe file, and pwdKeeper tries automatically
+opening it, you will see a screen telling you that the file has been lost. You
+will be presented with three options. Clicking on the &#39;Locate&#39; button will let
+you locate the safe again. Clicking on the &#39;Load from backup&#39; button will load
+from the automatic safe backup location. Finally, if you click on the &#39;I don&#39;t
+care&#39; button, you will be returned to the intro screen.</p>
 <h1>Hotkeys</h1>
 <p>Display this help window - Ctrl+H, F1</p>
 <p>Focus on the search bar - Ctrl+F, F3</p>
