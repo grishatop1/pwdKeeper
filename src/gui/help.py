@@ -14,6 +14,8 @@ from PyQt5.QtWidgets import QComboBox
 class HelpWindow(QWidget):
     def __init__(self):
         super().__init__()
+
+        self.setFixedSize(600,400)
         
         self.all = QVBoxLayout()
         self.main = QScrollArea()
