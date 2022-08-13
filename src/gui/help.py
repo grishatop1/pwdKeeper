@@ -33,9 +33,11 @@ class HelpWindow(QWidget):
 
         self.content = QLabel("""
 <h1>Hotkeys</h1>
-<p>Display this help window - <b>Ctrl+H</b>, <b>F1</b></p>
-<p>Focus on the search bar - <b>Ctrl+F</b>, <b>F3</b></p>
-<p>Open entry creation dialog - <b>Ctrl+N</b>, <b>Ctrl+T</b>, <b>F5</b></p>
+<ul>
+    <li>Display this help window - <b>Ctrl+H</b>, <b>F1</b></li>
+    <li>Focus on the search bar - <b>Ctrl+F</b>, <b>F3</b></li>
+    <li>Open entry creation dialog - <b>Ctrl+N</b>, <b>Ctrl+T</b>, <b>F5</b></li>
+</ul>
 <h1>Safe creation</h1>
 <p>To start working with pwdKeeper, click on the &#39;Create a new safe&#39; button. A save
 file dialog will pop up. Enter a name for your safe, keeping the .pwdKeeper file
