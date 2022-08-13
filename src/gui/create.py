@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QLabel
 from PyQt5.QtWidgets import QLineEdit
 from PyQt5.QtWidgets import QProgressBar
 
-from gui.bacctointro import BackWidget
+from .bacctointro import BackWidget
 
 class CreatePasswordPage(QWidget):
     def __init__(self):
