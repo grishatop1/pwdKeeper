@@ -144,7 +144,7 @@ class ToolbarLayout(QHBoxLayout):
 
         self.logo = QHBoxLayout()
         self.lock_label = QLabel()
-        self.lock_pixmap = QPixmap("../assets/safe-icon.png").scaledToWidth(36, Qt.SmoothTransformation)
+        self.lock_pixmap = QPixmap("./assets/safe-icon.png").scaledToWidth(36, Qt.SmoothTransformation)
         self.lock_label.setPixmap(self.lock_pixmap)
         self.logo.addWidget(self.lock_label)
         self.txt = QLabel()

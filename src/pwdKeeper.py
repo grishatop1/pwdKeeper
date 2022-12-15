@@ -21,7 +21,7 @@ class Window(QWidget):
     def __init__(self):
         super().__init__()
         
-        self.setWindowIcon(QIcon("../assets/lockie.png"))
+        self.setWindowIcon(QIcon("./assets/lockie.png"))
         self.setWindowTitle("pwdKeeper")
         self.resize(1024, 576)
         self.setMinimumSize(720, 420)

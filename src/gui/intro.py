@@ -23,7 +23,7 @@ class IntroPage(QWidget):
         self.main.addWidget(self.label)
 
         self.img_label = QLabel()
-        self.pixmap = QPixmap("../assets/safe-icon.png").scaledToWidth(100, Qt.SmoothTransformation)
+        self.pixmap = QPixmap("./assets/safe-icon.png").scaledToWidth(100, Qt.SmoothTransformation)
         self.img_label.setPixmap(self.pixmap)
         self.img_label.setAlignment(Qt.AlignCenter)
         self.img_label.setStyleSheet("border-radius: 20px;")

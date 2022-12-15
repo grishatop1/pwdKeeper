@@ -113,11 +113,11 @@ class Tab:
         self.copyPasswordTimer = None
         
     def setUI(self):
-        logo_path = f"../assets/app/{self.service.lower()}.png"
+        logo_path = f"./assets/app/{self.service.lower()}.png"
         if os.path.exists(logo_path):
             self.ui.service_logo.setPixmap(QPixmap(logo_path).scaledToWidth(48, Qt.TransformationMode.SmoothTransformation))
         else:
-            self.ui.service_logo.setPixmap(QPixmap("../assets/app/default.png").scaledToWidth(48, Qt.TransformationMode.SmoothTransformation))
+            self.ui.service_logo.setPixmap(QPixmap("./assets/app/default.png").scaledToWidth(48, Qt.TransformationMode.SmoothTransformation))
         self.ui.service_label.setText(self.service)
         self.setUIUsername()
         self.setUIPassword()

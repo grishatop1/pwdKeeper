@@ -31,7 +31,7 @@ QComboBox {
 }
 
 QComboBox::drop-down {
-    border-image: url("../assets/arrowdown.png") 0 0 0 0 stretch stretch;
+    border-image: url("./assets/arrowdown.png") 0 0 0 0 stretch stretch;
     width: 14px;
     height: 14px;
 }
