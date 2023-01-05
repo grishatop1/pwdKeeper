@@ -38,25 +38,25 @@ class HelpWindow(QWidget):
     <li>Focus on the search bar - <b>Ctrl+F</b>, <b>F3</b></li>
     <li>Open entry creation dialog - <b>Ctrl+N</b>, <b>Ctrl+T</b>, <b>F5</b></li>
 </ul>
-<h1>Safe creation</h1>
-<p>To start working with pwdKeeper, click on the &#39;Create a new safe&#39; button. A save
-file dialog will pop up. Enter a name for your safe, keeping the .pwdKeeper file
+<h1>Vault creation</h1>
+<p>To start working with pwdKeeper, click on the &#39;Create a new vault&#39; button. A save
+file dialog will pop up. Enter a name for your vault, keeping the .pwdKeeper file
 extension intact.</p>
-<p>Next, you need to create a strong password for the safe. If you repeat the
+<p>Next, you need to create a strong password for the vault. If you repeat the
 password correctly in the second input field, a brute force estimation will pop
 up below the &#39;Enter!&#39; button. This is an estimate of how long it might take an
-attacker to crack the password to your safe. Therefore, make sure you use a
+attacker to crack the password to your vault. Therefore, make sure you use a
 strong password that would take a longer time to be cracked.</p>
-<p>If you click on the &#39;Back&#39; button, the safe file will not be created.</p>
-<h1>Safe interior</h1>
-<p>When you create a password and enter the safe, you will be presented with its
+<p>If you click on the &#39;Back&#39; button, the vault file will not be created.</p>
+<h1>Vault interior</h1>
+<p>When you create a password and enter the vault, you will be presented with its
 interior. There is a search bar, a button to add new entries, and a list of
-entries. Also present is a button to change to another safe, as well as a
+entries. Also present is a button to change to another vault, as well as a
 button to display this help window. In the top left corner, you can see the name of
-the safe you are in at the moment.</p>
-<h1>Safe usage</h1>
+the vault you are in at the moment.</p>
+<h1>Vault usage</h1>
 <p>Click on the button with a green plus - the add entry button - to add an entry
-to your safe. A new window will pop up, prompting you to enter the name of the
+to your vault. A new window will pop up, prompting you to enter the name of the
 service and the login details (username or email, and password).</p>
 <p>Note that the service textbox is a dropdown menu, as is the username/email one.
 The former contains a predetermined list of some popular services, though you
@@ -72,18 +72,18 @@ the clicked value to clipboard.</p>
 <p>The search bar will filter by service name, username/email, and password. So, if
 you remember only part of the login info, or merely that you have an account on
 that service, you can find it easily using the search bar.</p>
-<p>To create a new safe or load another one, click on the &#39;Change the safe&#39; button.
+<p>To create a new vault or load another one, click on the &#39;Change the vault&#39; button.
 This will bring you back to the first page, from where you can launch a save or
 load file dialog using the two buttons.</p>
-<p>If you exit pwdKeeper without previously exiting the safe, upon entering the
+<p>If you exit pwdKeeper without previously exiting the vault, upon entering the
 program the next time you will immediately be prompted to enter the password for
-that safe (the path to the safe will be displayed so you know which safe you are
-entering). This is the same password prompt as when you load an existing safe.</p>
-<p>If you delete or relocate your safe file, and pwdKeeper tries automatically
+that vault (the path to the vault will be displayed so you know which vault you are
+entering). This is the same password prompt as when you load an existing vault.</p>
+<p>If you delete or relocate your vault file, and pwdKeeper tries automatically
 opening it, you will see a screen telling you that the file has been lost. You
 will be presented with three options. Clicking on the &#39;Locate&#39; button will let
-you locate the safe again. Clicking on the &#39;Load from backup&#39; button will load
-from the automatic safe backup location. Finally, if you click on the &#39;I don&#39;t
+you locate the vault again. Clicking on the &#39;Load from backup&#39; button will load
+from the automatic vault backup location. Finally, if you click on the &#39;I don&#39;t
 care&#39; button, you will be returned to the intro screen.</p>
 """)
         self.content.setWordWrap(True)

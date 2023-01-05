@@ -25,7 +25,7 @@ class CreatePasswordPage(QWidget):
         
         self.main.addSpacing(30)
 
-        self.label = QLabel(text="Create a password for the new safe")
+        self.label = QLabel(text="Create a password for the new vault")
         self.label.setStyleSheet("font-size: 40px;")
         self.main.addWidget(self.label)
         

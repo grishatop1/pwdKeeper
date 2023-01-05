@@ -156,5 +156,5 @@ class ToolbarLayout(QHBoxLayout):
         self.help_btn = QPushButton(text="Help")
         self.addWidget(self.help_btn)
 
-        self.logout_btn = QPushButton(text="Change the safe")
+        self.logout_btn = QPushButton(text="Change the vault")
         self.addWidget(self.logout_btn)

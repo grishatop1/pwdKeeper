@@ -23,7 +23,7 @@ class LoginPage(QWidget):
         self.wrapper.addStretch()
         self.main.addStretch()
 
-        self.label = QLabel(text="Enter the password for your safe")
+        self.label = QLabel(text="Enter the password for your vault")
         self.label.setStyleSheet("font-size: 40px;")
         self.main.addWidget(self.label)
         

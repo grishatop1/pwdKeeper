@@ -34,12 +34,12 @@ class IntroPage(QWidget):
         self.btns = QVBoxLayout()
         self.btns.setAlignment(Qt.AlignCenter)
 
-        self.create_btn = QPushButton(text="Create a new safe")
+        self.create_btn = QPushButton(text="Create a new vault")
         self.create_btn.setStyleSheet("font-size: 21px; padding: 15px;")
         self.create_btn.setMaximumWidth(250)
         self.btns.addWidget(self.create_btn)
 
-        self.load_btn = QPushButton(text="Load safe")
+        self.load_btn = QPushButton(text="Load vault")
         self.load_btn.setMaximumWidth(250)
         self.btns.addWidget(self.load_btn)
         
